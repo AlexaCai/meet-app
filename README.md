@@ -12,9 +12,9 @@
  
 ## Projet description
 
-*Meet* app was created to serve as a reference in the domain of event searching and entertainment. Users can go on*Meet* app to have access to different informations on upcoming events in a specific searched city (or by default, on all cities when a user hasn't searched for a specific city). Once users see all events from all cities or from a specific searched city on their UI, they can click on a event to have access to more details. 
+*Meet* app was created to serve as a reference in the domain of event searching and entertainment. Users can go on*Meet* app to have access to different information on upcoming events in a specific searched city (or by default, on all cities when a user hasn't searched for a specific city). Once users see all events from all cities or from a specific searched city on their UI, they can click on an event to have access to more details. 
 
-*Meet* app can be breakdown in the five following points:
+*Meet* app can be broken down in the five following points:
 
  - **Who** — For users who could be anyone.
  - **What** — A progressive web app with the ability to work offline and a serverless backend developed using a TDD technique. 
@@ -24,17 +24,17 @@
 
 ## User interface
 
-More concretly, when users land on *Meet* app, the initial default page with a search input field to look for a city is displayed. Once users start typing in the search field, a list of corresponding cities matching with the entry pops up, making the search easier and faster.
+More concretely, when users land on *Meet* app, the initial default page with a search input field to look for a city is displayed. Once users start typing in the search field, a list of the corresponding cities matching with the entry pops up, making the search easier and faster.
 
-Once users have entered and selected for a city, he is invited to precise how many events he wants to see display for that city (by default, 32 events are displayed). A list of events for the searched city is then displayed. General information for each event are accessible up to this point, and if users want more details on a specific event, he can click on it to access more information, and then close de detailed view to go back full list of events. 
+Once users have entered and selected for a city, he is invited to precise how many events he wants to see display for that city (by default, 32 events are displayed). A list of events for the searched city is then displayed. General information for each event are accessible up to this point, and if users want more details on a specific event, he can click on it to access more information, and then close the detailed view to go back full list of events. 
 
 User can also display a chart showing the number of upcoming events in each city.
 
-All views are responsive, using a combination of **~~ABC et DEF.~~**
+All views are responsive, using a combination of **(to fill in)**.
 
 ## User stories and scenarios
 
-To help the development of the app, the following users stories, along with their respective scenarios written with the Gherkin syntax have been created (the scenarios here being part of a larger user story describing interactions between a user and the application) .
+To help the development of the app, the following user stories, along with their respective scenarios written with the Gherkin syntax have been created (the scenarios here being part of a larger user story describing interactions between a user and the application) .
 
 ### User story 1 - Filter events by city
 
@@ -45,12 +45,12 @@ To help the development of the app, the following users stories, along with thei
 **Scenario 1.1** - When user hasn’t searched for a specific city, show upcoming events from all cities.
 
 > -   **Given**  user hasn’t searched for any city;
-> -   **When**  user is on the initial default view of the app;
+> -   **When**  user is in the initial default view of the app;
 > -   **Then**  user should see a list of upcoming events for all cities.
 
 **Scenario 1.2** - User should see a list of suggestions when they search for a city.
 
-> -   **Given**  user is on the initial default view of the app;
+> -   **Given**  user is in the initial default view of the app;
 > -   **When**  user starts typing in the city search input field;
 > -   **Then**  user should receive a list of cities (suggestions) that match what is typed.
 
@@ -68,21 +68,21 @@ To help the development of the app, the following users stories, along with thei
 
 **Scenario 2.1** - An event element is collapsed by default.
 
-> -   **Given** user hasn’t click/expand an event element;
+> -   **Given** user hasn’t clicked/expand an event element;
 > -   **When** user is viewing upcoming events for all cities or upcoming events for a specific city;
 > -   **Then** user should see a list of upcoming events all collapsed by default.
 
 **Scenario 2.2** - User can expand an event to see details.
 
->  - **Given** user hasn’t click/expand an event element;
+>  - **Given** user hasn’t clicked/expand an event element;
 >  - **When** user is viewing upcoming events for all cities or upcoming events for a specific city and click on a specific event;
 >  - **Then** user should see the event all details.
 
 **Scenario 2.3** - User can collapse an event to hide details.
 
->  -   **Given** user has click/expand an event element;
+>  -   **Given** user has clicked/expand an event element;
 >  -   **When** the user is on a specific event details view and click on the hide details button;
->  - **Then** user view should collapse and go back to previous general list of collapsed events, whether it is in initial defaut view (if user did not search for a specific city) or in a specific searched city view (if user did search for a specific city).
+>  - **Then** user view should collapse and go back to previous general list of collapsed events, whether it is in initial default view (if user did not search for a specific city) or in a specific searched city view (if user did search for a specific city).
 
 ### User story 3 - Specify number of events
 
@@ -117,8 +117,8 @@ To help the development of the app, the following users stories, along with thei
 **Scenario 4.2** - Show error when user changes search settings (city, number of events).
 
 >  -   **Given** user being offline but still seeing the event(s) he viewed last time he was online;
->  -   **When** user changes search settings (city, number of events...) while behing offline;
->  - **Then** user see an error message.
+>  -   **When** user changes search settings (city, number of events...) while being offline;
+>  - **Then** user sees an error message.
 
 ### User story 5 - Add an app shortcut to the home screen
 
@@ -130,7 +130,7 @@ To help the development of the app, the following users stories, along with thei
 
  >  -   **Given** user did not not have the app installed on home screen;
 >  -   **When** user installs the app on device home screen;
->  - **Then** user see the app on home screen and can use it as a shortcut to access it.
+>  - **Then** user sees the app on home screen and can use it as a shortcut to access it.
 
 ### User story 6 - Display charts visualizing event details
 
@@ -149,7 +149,7 @@ To help the development of the app, the following users stories, along with thei
 
 Meet app is a serverless, progressive web application (PWA) built using React (Create-React-App / CRA) and the test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events in different cities.
 
-Below is a list of all technical aspect in the project requierements, which all have me implemented and worked out:
+Below is a list of all technical aspects of the project requierements, which all have me implemented and worked out:
 
  - (to fill in)
  - (to fill in)
