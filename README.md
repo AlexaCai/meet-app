@@ -38,7 +38,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 1 - Filter events by city
 
 > As a **user**,   
-> I should be able to **filter events by city** ,  
+> I should be able to **filter events by city**,  
 > So that **I can see a list of events taking place in a specific cities**.
 
 **Scenario 1.1** - When user hasn’t searched for a specific city, show upcoming events from all cities.
@@ -62,7 +62,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 2 - Show/hide event details
 
 > As a **user**,   
-> I should be able to **show/hide event details** ,  
+> I should be able to **show/hide event details**,  
 > So that **I can see more details on a specific event when needed, and then go back to the previous general list of events when desired**.
 
 **Scenario 2.1** - An event element is collapsed by default.
@@ -86,7 +86,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 3 - Specify number of events
 
 > As a **user**,   
-> I should be able to **specify the number of events shown my screen** ,  
+> I should be able to **specify the number of events shown my screen**,  
 > So that **I can see the number of events displayed according to my preference**.
 
 **Scenario 3.1** - When user hasn’t specified a number, 32 events are shown by default.
@@ -104,7 +104,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 4 - Use the app when offline
 
 > As a **user**,   
-> I should be able to **use the app when offline** ,  
+> I should be able to **use the app when offline**,  
 > So that **I can keep seeing some events data when there’s no internet connection**.
 
 **Scenario 4.1** - Show cached data when there’s no internet connection.
@@ -122,7 +122,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 5 - Add an app shortcut to the home screen
 
 > As a **user**,   
-> I should be able to **add an app shortcut to my home screen** ,  
+> I should be able to **add an app shortcut to my home screen**,  
 > So that **I can access the app faster**.
 
 **Scenario 5.1** - User can install the *Meet* app as a shortcut on their device home screen.
@@ -134,7 +134,7 @@ To help the development of the app, the following users stories, along with thei
 ### User story 6 - Display charts visualizing event details
 
 > As a **user**,   
-> I should be able to **visualize event details on charts** ,  
+> I should be able to **visualize event details on charts**,  
 > So that **I can know the number of upcoming events in each city**.
 
 **Scenario 6.1** - Display charts visualizing event details
