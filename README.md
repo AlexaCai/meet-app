@@ -109,15 +109,15 @@ To help the development of the app, the following users stories, along with thei
 
 **Scenario 4.1** - Show cached data when there’s no internet connection.
 
- -   **Given** user used the app with an internet connection, and then don't have it anymore;
- -   **When** user is on initial default view (upcoming events forall cities), on a specific city view or on an event details view;
- - **Then** user can still see the event(s) he viewed the last time he was online.
+>  -   **Given** user used the app with an internet connection, and then don't have it anymore;
+>  -   **When** user is on initial default view (upcoming events forall cities), on a specific city view or on an event details view;
+>  - **Then** user can still see the event(s) he viewed the last time he was online.
  
 **Scenario 4.2** - Show error when user changes search settings (city, number of events).
 
- -   **Given** user being offline but still seeing the event(s) he viewed last time he was online;
- -   **When** user changes search settings (city, number of events...) while behing offline;
- - **Then** user see an error message.
+>  -   **Given** user being offline but still seeing the event(s) he viewed last time he was online;
+>  -   **When** user changes search settings (city, number of events...) while behing offline;
+>  - **Then** user see an error message.
 
 ### User story 5 - Add an app shortcut to the home screen
 
@@ -127,9 +127,9 @@ To help the development of the app, the following users stories, along with thei
 
 **Scenario 5.1** - User can install the *Meet* app as a shortcut on their device home screen.
 
- -   **Given** user did not not have the app installed on home screen;
- -   **When** user installs the app on device home screen;
- - **Then** user see the app on home screen and can use it as a shortcut to access it.
+ >  -   **Given** user did not not have the app installed on home screen;
+>  -   **When** user installs the app on device home screen;
+>  - **Then** user see the app on home screen and can use it as a shortcut to access it.
 
 ### User story 6 - Display charts visualizing event details
 
