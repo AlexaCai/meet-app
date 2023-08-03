@@ -7,6 +7,7 @@
 -  User stories and scenarios
  - Technical aspects 
  - App dependencies
+  - Github repositorie and Github Pages
 
  
 ## Projet description
@@ -172,4 +173,8 @@ For codes
  
  - Gh-Pages
 
-Here's the link to my web app hosted on (to fill in).
+## Github repositorie and Github Pages
+
+Here's the link to my full [Github repositorie for my *Meet* app](https://github.com/AlexaCai/meet-app).
+
+Here's the link to my [*Meet* app hosted on Github Pages](https://alexacai.github.io/meet-app/).
