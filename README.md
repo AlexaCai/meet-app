@@ -15,11 +15,11 @@
 
 *Meet* app can be breakdown in the five following points:
 
-**Who** — For users who could be anyone.
-**What** — A progressive web app with the ability to work offline and a serverless backend developed using a TDD technique. 
-**When** — Users of this app will be able to use it whenever they want to view upcoming events for a specific city. 
-**Where** — The server is a serverless function hosted by a cloud provider (AWS). The application itself is also hosted online to make it shareable and installable. It can be used even when the user is offline. As it’s responsive, it displays well on any device. 
-**Why** — Serverless is the next generation of cloud infrastructure, PWA provides great user experience and performance, and the TDD technique ensures to have quality code and adequate test coverage.
+ - **Who** — For users who could be anyone.
+ - **What** — A progressive web app with the ability to work offline and a serverless backend developed using a TDD technique. 
+ - **When** — Users of this app will be able to use it whenever they want to view upcoming events for a specific city. 
+ - **Where** — The server is a serverless function hosted by a cloud provider (AWS). The application itself is also hosted online to make it shareable and installable. It can be used even when the user is offline. As it’s responsive, it displays well on any device. 
+ - **Why** — Serverless is the next generation of cloud infrastructure, PWA provides great user experience and performance, and the TDD technique ensures to have quality code and adequate test coverage.
 
 ## User interface
 
