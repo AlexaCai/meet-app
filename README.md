@@ -61,9 +61,9 @@ To help the development of the app, the following users stories, along with thei
 
 ### User story 2 - Show/hide event details
 
-> As a **user**, 
-> I should be able to **show/hide event details**, 
-> So that **I can see more details on a specific event when needed, and then go back to the previous general list of events when desired**.
+> As a **user**,
+I should be able to **show/hide event details**, 
+So that **I can see more details on a specific event when needed, and then go back to the previous general list of events when desired**.
 
 **Scenario 2.1** - An event element is collapsed by default.
 
