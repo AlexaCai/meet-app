@@ -85,10 +85,9 @@ To help the development of the app, the following users stories, along with thei
 
 ### User story 3 - Specify number of events
 
-> As a **user**,
-> I should be able to **specify the number of events shown my screen**,
-> So that **I can see the number of events displayed according
-> to my preference**.
+> As a **user**,   
+> I should be able to **specify the number of events shown my screen** ,  
+> So that **I can see the number of events displayed according to my preference**.
 
 **Scenario 3.1** - When user hasn’t specified a number, 32 events are shown by default.
 
@@ -104,10 +103,9 @@ To help the development of the app, the following users stories, along with thei
 
 ### User story 4 - Use the app when offline
 
-> As a **user**, 
-> I should be able to **use the app when offline**, 
-> So that **I can keep seeing some events data when there’s no internet
-> connection**.
+> As a **user**,   
+> I should be able to **use the app when offline** ,  
+> So that **I can keep seeing some events data when there’s no internet connection**.
 
 **Scenario 4.1** - Show cached data when there’s no internet connection.
 
@@ -123,8 +121,8 @@ To help the development of the app, the following users stories, along with thei
 
 ### User story 5 - Add an app shortcut to the home screen
 
-> As a **user**, 
-> I should be able to **add an app shortcut to my home screen**,
+> As a **user**,   
+> I should be able to **add an app shortcut to my home screen** ,  
 > So that **I can access the app faster**.
 
 **Scenario 5.1** - User can install the *Meet* app as a shortcut on their device home screen.
@@ -135,8 +133,8 @@ To help the development of the app, the following users stories, along with thei
 
 ### User story 6 - Display charts visualizing event details
 
-> As a **user**, 
-> I should be able to **visualize event details on charts**, 
+> As a **user**,   
+> I should be able to **visualize event details on charts** ,  
 > So that **I can know the number of upcoming events in each city**.
 
 **Scenario 6.1** - Display charts visualizing event details
