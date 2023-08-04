@@ -147,24 +147,24 @@ To help the development of the app, the following user stories, along with their
 
 ## Technical aspects
 
-Meet app is a serverless, progressive web application (PWA) built using React (Create-React-App / CRA) and the test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events in different cities.
+*Meet* app is a serverless, progressive web application (PWA) built using React (Create-React-App / CRA) and the test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events in different cities.
 
-Serverless functions in Meet app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. 
+Serverless functions in *Meet* app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. 
 
-To access the events from Google Calendar API on Meet app, users first have to request an access token on an authorization server (in case of Meet app, the authorization server is Google OAuth). 
+To access the events from Google Calendar API on *Meet* app, users first have to request an access token on an authorization server (in case of *Meet* app, the authorization server is Google OAuth). 
 
-For the users / Meet app to get a token from the authorization server, a serverless function is used, using the cloud-service provider AWS Lambda. Two things are then required to launch the process of obtaining a token: 
+For the users / *Meet* app to get a token from the authorization server, a serverless function is used, using the cloud-service provider AWS Lambda. Two things are then required to launch the process of obtaining a token: 
 
--A consumer key (client_id)
--A consumer secret (client_secret)
+- A consumer key (client_id)
+- A consumer secret (client_secret)
 
 The consumer key and consumer secret are used to identify the consumer that wants to use the Google OAuth authorization server (the consumer here being the serverless function hosted on AWS Lambda). The consumer uses the key and secret to start the process of requesting the access token from the authorization server, which then lets the user know about this request (a consent screen appears).
 
-When a user provides their credentials to log in to their Google account and grants consent to Meet app, the authorization server authenticates the user and generate / send back an access token to the app. The app can then use this token (on behalf of the user) to access protected resources (Google Calendar events). This allows users, up to this point, to send requests to Google Calendar API along with the received token and get back events via the React app (since the Google API will recognize the user’s token and subsequently provide the requested list of events).
+When a user provides their credentials to log in to their Google account and grants consent to *Meet* app, the authorization server authenticates the user and generate / send back an access token to the app. The app can then use this token (on behalf of the user) to access protected resources (Google Calendar events). This allows users, up to this point, to send requests to Google Calendar API along with the received token and get back events via the React app (since the Google API will recognize the user’s token and subsequently provide the requested list of events).
 
-The access token is required for the Meet app to work because the Google Calendar API is a protected API. Protected APIs can only be called by authenticated apps, so by apps that have a valid token issued by the API provider. Users / app sending a request to access the Google Calendar API events without a valid token would simply get an error message.
+The access token is required for the *Meet* app to work because the Google Calendar API is a protected API. Protected APIs can only be called by authenticated apps, so by apps that have a valid token issued by the API provider. Users / app sending a request to access the Google Calendar API events without a valid token would simply get an error message.
 
-Serveless functions for the authorization process with Meet app are particularly useful as they allow to avoid the need of building and maintaining an entire server just to provide access tokens. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developpers only pay for the resources used).
+Serveless functions for the authorization process with *Meet* app are particularly useful as they allow to avoid the need of building and maintaining an entire server just to provide access tokens. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developpers only pay for the resources used).
 
 Below is a list of all technical aspects of the project requierements, which all have me implemented and worked out:
 
