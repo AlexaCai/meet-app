@@ -1,4 +1,4 @@
-//***added by default when you generate the serverless template code. It makes the code in the file more strict, reducing some of JavaScript’s sloppyness.
+//***Added by default when you generate the serverless template code. It makes the code in the file more strict, reducing some of JavaScript’s sloppyness.
 'use strict';
 
 //***The required Google package are imported (“googleapis”), along with the Google Calendar.
