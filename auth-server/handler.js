@@ -27,7 +27,7 @@ const oAuth2Client = new google.auth.OAuth2(
 //***The getAuthURL function’s logic was created and exported using Node.js module.exports. Another notable module used in the getAuthURL function is the OAuth2 client, which allows to seamlessly retrieve an access token, refresh it, and retry the request.
 module.exports.getAuthURL = async () => {
 
-   //***To generate an authentication URL from Google API using the instance stored in oAuth2Client, it is necessary to call the 'oAuth2Client.generateAuthUrl' method and pass the “access_type” and scope (that was set in the variable scopes earlier) as an object.
+  //***To generate an authentication URL from Google API using the instance stored in oAuth2Client, it is necessary to call the 'oAuth2Client.generateAuthUrl' method and pass the “access_type” and scope (that was set in the variable scopes earlier) as an object.
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
@@ -47,16 +47,15 @@ module.exports.getAuthURL = async () => {
 };
 
 
-
 module.exports.getAccessToken = async (event) => {
 
   //***Decode authorization code extracted from the URL query (received for getAuthURL).
   const code = decodeURIComponent(`${event.pathParameters.code}`);
 
   return new Promise((resolve, reject) => {
-    
-     //***Exchange authorization code for access token with a “callback” after the exchange.
-     //***The callback in this case is an arrow function with the results as parameters: “error” and “response”.
+
+    //***Exchange authorization code for access token with a “callback” after the exchange.
+    //***The callback in this case is an arrow function with the results as parameters: “error” and “response”.
     oAuth2Client.getToken(code, (error, response) => {
       if (error) {
         return reject(error);
@@ -83,3 +82,50 @@ module.exports.getAccessToken = async (event) => {
       };
     });
 };
+
+
+//***Named exactly the same as the function you defined in serverless.yml (getCalendarEvents).
+module.exports.getCalendarEvents = async (event) => {
+
+  //***Declared an access_token variable and get the token.
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+  //***Set the access token as credentials.
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: CALENDAR_ID,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    );
+  })
+    .then((results) => {
+      //***Respond with OAuth token 
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+        body: JSON.stringify({ events: results.data.items }),
+      };
+    })
+    .catch((error) => {
+      //***Handle error
+      return {
+        statusCode: 500,
+        body: JSON.stringify(error),
+      };
+    });
+}
