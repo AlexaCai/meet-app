@@ -19,10 +19,7 @@ describe('<Event /> component', () => {
         //***Renders the <Event /> component with the first event object from mockData (mock-data.js) as a prop.
         EventComponent = render(<Event event={mockData[0]} />);
     })
-
-
-    //***Test written for when event are collapsed (basic information shown).
-
+    
 
     //***Test looking if event's title is rendered.
     test('collapsed event has a title', () => {
@@ -53,7 +50,7 @@ describe('<Event /> component', () => {
         expect(EventComponent.queryByText('Show details')).toBeInTheDocument();
     });
 
-    test('event details section is shown when a user clicks on show details button', async () => {
+    test('event details section is shown when a user clicks on Show details button', async () => {
         const user = userEvent.setup();
         const showDetailsButton = EventComponent.queryByText('Show details');
         await user.click(showDetailsButton);
