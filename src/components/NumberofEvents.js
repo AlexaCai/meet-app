@@ -32,6 +32,7 @@ const NumberOfEvents = () => {
 
     return (
         <div id="number-events">
+            <p>Number of events</p>
             <input
                 type="text"
                 className="numberEvents"
