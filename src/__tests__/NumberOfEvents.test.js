@@ -1,14 +1,16 @@
 //***src/__tests__/NumberOfEvents.test.js
 
 //***Import necessary modules and files.
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import NumberOfEvents from '../components/NumberofEvents';
+//***Import the App.js component.
+import App from '../App';
 
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}}/>);
     });
 
     //***This test checks whether the rendered NumberOfEventsComponent contains an element with a role of "textbox" (input field).
@@ -96,6 +98,21 @@ describe('<NumberOfEvents /> component', () => {
             expect(numberOfEventsInput.value).toBe('32');
             expect(numberOfEventsInput.placeholder).toBe('');
         });
+    });
+
+});
+
+describe('<NumberOfEvents /> integration', () => {
+    test('ensure the number of events rendered in UI matches the number of events inputted by the user in Number of events input field', async () => {
+        const user = userEvent.setup();
+        const AppComponent = render(<App />);
+        const AppDOM = AppComponent.container.firstChild;
+        const NumberOfEventsDOM = AppDOM.querySelector('#number-events');
+        const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole('textbox');
+        await user.type(NumberOfEventsInput, "12");
+        const EventListDOM = AppDOM.querySelector('#event-list');
+        const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(allRenderedEventItems.length).toBe(12);
     });
 
 });

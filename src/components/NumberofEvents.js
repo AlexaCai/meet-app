@@ -3,7 +3,7 @@
 //***Import necessary module.
 import { useState } from "react";
 
-const NumberOfEvents = () => {
+const NumberOfEvents = ({ setCurrentNOE }) => {
     const [inputValue, setInputValue] = useState("32");
     const [placeHolder, setPlaceholder] = useState("Enter number of events");
 
@@ -19,14 +19,17 @@ const NumberOfEvents = () => {
     };
 
     const handleInputChange = (e) => {
+        const value = e.target.value;
         setPlaceholder("");
         setInputValue(e.target.value);
+        setCurrentNOE(value);
     };
 
     const handleInputBlur = () => {
         if (inputValue === "") {
             setPlaceholder("");
             setInputValue("32");
+            setCurrentNOE("32");
         }
     };
 
