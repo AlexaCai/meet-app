@@ -1,9 +1,11 @@
 //***src/__tests__/EventList.test.js
 
-//***Import necessary modules and files.
-import { render } from '@testing-library/react';
+//***Import within(), which allows to use React Testing Library query functions on the passed DOM object. Such query functions are queryByText, queryByRole, and so on — like the query functions call on the returned object of render().
+//***Import waitFor(), which allows to query elements in the page that aren’t rendered immediately.
+import { render, within, waitFor } from '@testing-library/react';
 import EventList from '../components/EventList';
 import { getEvents } from '../api';
+import App from "../App";
 
 describe('<EventList /> component', () => {
     let EventListComponent;
@@ -26,4 +28,16 @@ describe('<EventList /> component', () => {
         expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
     });
 
+});
+
+describe('<EventList /> integration', () => {
+    test('renders a list of 32 events when the app is mounted and rendered', async () => {
+        const AppComponent = render(<App />);
+        const AppDOM = AppComponent.container.firstChild;
+        const EventListDOM = AppDOM.querySelector('#event-list');
+        await waitFor(() => {
+          const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+          expect(EventListItems.length).toBe(32);
+        });
+      });
 });
