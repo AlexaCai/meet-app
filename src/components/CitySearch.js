@@ -1,10 +1,10 @@
 //***src/components/CitySearch.js
 
 //***Import necessary module.
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //***''allLocations'' props extraction.
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     //***New state for the input field so that we can access its value (here being query).
     const [query, setQuery] = useState("");
@@ -12,7 +12,7 @@ const CitySearch = ({ allLocations }) => {
     const [suggestions, setSuggestions] = useState([]);
 
     //***Function handleInputChanged is uses as the callback function in city search input field below, which is why it has the event parameter in it.
-    //***This function 1) obtains the current value of the input field. Based on this value, it 2) filters the allLocations array, then 3) set the Query local state to whatever the input value is, and finally 4) set the suggestions local state to the filtered locations array.
+    //***This function 1) obtains the current value of the input field. Based on this value, it 2) filters the allLocations array, then 3) set the Query local state to whatever the input value is, and finally 4) set the suggestions local state to the filtered locations array. ${allLocations}  is used instead of {allLocations} to avoid directly putting complex data-type variables into useEffect’s dependency array.
     const handleInputChanged = (event) => {
         const value = event.target.value;
         const filteredLocations = allLocations ? allLocations.filter((location) => {
@@ -27,10 +27,18 @@ const CitySearch = ({ allLocations }) => {
         const value = event.target.textContent;
         setQuery(value);
         setShowSuggestions(false);
-    };
+        setCurrentCity(value);
+      };
+
+    //***Initialize the local state suggestions to have the default value as the same array as its allLocations prop
+    //***Stringified value of the allLocation prop is used as a dependency. This way, if there’s a change in it (e.g., an empty array that gets filled), the useEffect code will be re-executed again, ensuring that the local suggestions state is updated.
+    useEffect(() => {
+        setSuggestions(allLocations);
+      }, [`${allLocations}`]);
 
     return (
         <div id="city-search">
+            <p>City finder</p>
             <input
                 type="text"
                 className="city"
