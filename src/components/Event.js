@@ -26,7 +26,7 @@ const Event = ({ event }) => {
           {/* Display a heading for the details */}
           <h4>About the event</h4>
           {/* Link redirecting to event Google Calendar for more details info */}
-          <p><a href="{event.htmlLink}" target="_blank">See details on Google Calendar</a></p>
+          <p><a href={event.htmlLink} target="_blank">See details on Google Calendar</a></p>
           <br></br>
           {/* Display description of the event */}
           <p id='event-description'>{event.description}</p>
