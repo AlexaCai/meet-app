@@ -1,6 +1,6 @@
-// src/__tests__/Event.test.js
+//***src/__tests__/Event.test.js
 
-//Import ''render'' from testing library (render is a function that's use to mock an accurate representation of the original React component, which allow for high-quality (and accurate) testing).
+//***Import ''render'' from testing library (render is a function that's use to mock an accurate representation of the original React component, which allow for high-quality (and accurate) testing).
 import { render } from '@testing-library/react';
 //***Import ''userEvent'' is nececessary to make tests that involves user interactions (such as entering text in input field or clicking on a button, show as in the tests below regarding results when user click on ''Show details'' and ''Hide details'' buttons). This goes in pair with ''const user = userEvent.setup();'' used in the test (whenever a test that involves user interactions, should always start with setting up the object that will represent the user using the userEvent.setup() function).
 import userEvent from '@testing-library/user-event';
@@ -9,6 +9,7 @@ import Event, { formatDate } from '../components/Event';
 //***Import the mockData file containing all event objects used for testing.
 import mockData from '../mock-data';
 
+//***Unit testing.
 //***Using of ''describre'' function to combine multiple tests into one group (called a scope), then use the beforeEach() function only on tests within that group.
 //***''describe'' function first argument '<Event /> component' is a simple description of what's being tested, while the rest is the function's logic.
 describe('<Event /> component', () => {

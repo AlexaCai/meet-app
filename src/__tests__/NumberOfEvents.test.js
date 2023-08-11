@@ -7,10 +7,11 @@ import NumberOfEvents from '../components/NumberofEvents';
 //***Import the App.js component.
 import App from '../App';
 
+//***Unit testing.
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}}/>);
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} />);
     });
 
     //***This test checks whether the rendered NumberOfEventsComponent contains an element with a role of "textbox" (input field).
@@ -102,6 +103,7 @@ describe('<NumberOfEvents /> component', () => {
 
 });
 
+//***Integration testing.
 describe('<NumberOfEvents /> integration', () => {
     test('ensure the number of events rendered in UI matches the number of events inputted by the user in Number of events input field', async () => {
         const user = userEvent.setup();
