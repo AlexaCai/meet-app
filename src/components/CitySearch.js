@@ -38,7 +38,9 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 
     return (
         <div id="city-search">
-            <p>City finder</p>
+             <h1>Have some free time? </h1>
+             <p>Search for events you could participate in your own city or around the world!</p>
+            <h4 id="city-search-title">City finder</h4>
             <input
                 type="text"
                 className="city"

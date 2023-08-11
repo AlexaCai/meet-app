@@ -4,8 +4,8 @@
 import { render } from '@testing-library/react';
 //***Import ''userEvent'' is nececessary to make tests that involves user interactions (such as entering text in input field or clicking on a button, show as in the tests below regarding results when user click on ''Show details'' and ''Hide details'' buttons). This goes in pair with ''const user = userEvent.setup();'' used in the test (whenever a test that involves user interactions, should always start with setting up the object that will represent the user using the userEvent.setup() function).
 import userEvent from '@testing-library/user-event';
-//Import ''Event'' componenent from src/components folder, to allow the testing here on it (can’t test a component without importing it first in a testing file).
-import Event from '../components/Event';
+//Import ''Event'' componenent from src/components folder, to allow the testing here on it (can’t test a component without importing it first in a testing file). The prop { formatDate } is also extract and used in the test 'collapsed event has a start time' below, as some modification have been made to format the presentation of event time in Event.js. This prop has to be extract here and used in the test below, otherwise this specific test wouldnt run correctly (always error).
+import Event, { formatDate } from '../components/Event';
 //***Import the mockData file containing all event objects used for testing.
 import mockData from '../mock-data';
 
@@ -28,8 +28,10 @@ describe('<Event /> component', () => {
 
     //***Test looking if event's start time is rendered.
     test('collapsed event has a start time', () => {
-        //***Expecting that the text of the event's starting time is present in the rendered component.
-        expect(EventComponent.queryByText(mockData[0].created)).toBeInTheDocument();
+        //***Creates a variable named 'formattedCreated' and assigning to it the result of formatting the 'created' property of the first event object in your mockData array. To achieve this, formatDate function is used (via the prop extracting above - this function being defined in Event.js). This line ensures that event start time is formatting correctly in the rendered component.
+        const formattedCreated = formatDate(mockData[0].created);
+        //***Expecting that the formatted start time of the event is present in the rendered component.
+        expect(EventComponent.queryByText(formattedCreated)).toBeInTheDocument();
     });
 
     //***Test looking if event's location is rendered.
