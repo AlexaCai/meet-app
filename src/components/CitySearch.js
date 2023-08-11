@@ -28,18 +28,18 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
         setQuery(value);
         setShowSuggestions(false);
         setCurrentCity(value);
-      };
+    };
 
     //***Initialize the local state suggestions to have the default value as the same array as its allLocations prop
     //***Stringified value of the allLocation prop is used as a dependency. This way, if there’s a change in it (e.g., an empty array that gets filled), the useEffect code will be re-executed again, ensuring that the local suggestions state is updated.
     useEffect(() => {
         setSuggestions(allLocations);
-      }, [`${allLocations}`]);
+    }, [`${allLocations}`]);
 
     return (
         <div id="city-search">
-             <h1>Have some free time? </h1>
-             <p>Search for events you could participate in your own city or around the world!</p>
+            <h1>Have some free time? </h1>
+            <p>Search for events you could participate in your own city or around the world!</p>
             <h4 id="city-search-title">City finder</h4>
             <input
                 type="text"
@@ -49,7 +49,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
                 onFocus={() => setShowSuggestions(true)}
                 onChange={handleInputChanged}
             />
-             {/* Conditional rendering checks whether the showSuggestions state is true. If it is, it renders the content inside the braces - otherwise, it renders null. This controls whether the suggestions list should be displayed (when user clicks on input field). */}
+            {/* Conditional rendering checks whether the showSuggestions state is true. If it is, it renders the content inside the braces - otherwise, it renders null. This controls whether the suggestions list should be displayed (when user clicks on input field). */}
             {showSuggestions ?
                 <ul className="suggestions">
                     {suggestions.map((suggestion) => {

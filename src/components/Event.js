@@ -9,7 +9,7 @@ const Event = ({ event }) => {
 
   //***Declare a state variable 'showDetails' and a function 'setShowDetails' to update it. Initial value of 'showDetails' is false.
   const [showDetails, setShowDetails] = useState(false);
-  
+
   //***Render the component's UI. All event.summary, event.created, etc. comes from the event object structure within mock-data.js.
   return (
     <li>
@@ -41,11 +41,11 @@ const Event = ({ event }) => {
   );
 };
 
-    //***Function to format the start time of each event correctly. This const in exported so it can be used inside Event.test.js prop extracting and make the test 'collapsed event has a start time' run succcessfully (otherwise, since the function is defined inside the Event.js component, it wouldnt accessible in Event.test.js file directly).
-    export const formatDate = (isoDate) => {
-      const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-      const formattedDate = new Date(isoDate).toLocaleDateString('en-US', options);
-      return formattedDate;
-    };
+//***Function to format the start time of each event correctly. This const in exported so it can be used inside Event.test.js prop extracting and make the test 'collapsed event has a start time' run succcessfully (otherwise, since the function is defined inside the Event.js component, it wouldnt accessible in Event.test.js file directly).
+export const formatDate = (isoDate) => {
+  const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+  const formattedDate = new Date(isoDate).toLocaleDateString('en-US', options);
+  return formattedDate;
+};
 
 export default Event;

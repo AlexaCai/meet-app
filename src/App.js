@@ -33,13 +33,13 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   }
 
- return (
-   <div className="App">
-     <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity}/>
-     <NumberOfEvents setCurrentNOE={setCurrentNOE}/>
-     <EventList events={events}/>
-   </div>
- );
+  return (
+    <div className="App">
+      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
+      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+      <EventList events={events} />
+    </div>
+  );
 }
 
 export default App;

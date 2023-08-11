@@ -11,6 +11,7 @@ import App from '../App';
 //***Import two functions use for fetching and processing event data.
 import { extractLocations, getEvents } from '../api';
 
+//***Unit testing.
 //***''describe'' is a function provided by Jest. The test suite is named "<CitySearch />". The following test suite (containning 5 different tests) is a way to group related tests together for a specific component or functionality.
 describe('<CitySearch /> component', () => {
     //***Declares a variable ''CitySearchComponent'' and sets up a beforeEach code, which runs before each test in the suite. It renders the CitySearch component using the render function and stores the result in CitySearchComponent.
@@ -96,6 +97,7 @@ describe('<CitySearch /> component', () => {
 
 });
 
+//***Integration testing.
 describe('<CitySearch /> integration', () => {
 
     //***This test assumes everything work once the App component is rendered (from the user’s point of view, when the app is opened) and the user clicks on the city text box. The correct suggestions list will appear (the expected number should be the count of all suggested locations, plus one for the hardcoded 'See all cities' suggested item). 
