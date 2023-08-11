@@ -56,9 +56,9 @@ To help the development of the app, the following user stories, along with their
 
 **Scenario 1.3** - User can select a city from the suggested list.
 
-> -   **Given**  user was typing a specific city (ex: Toronto) in the city search input field _AND_  the list of suggested cities is showing;
-> -   **When**  user selects a city (ex: Toronto, Canada) from the  suggestion list;
-> -   **Then**  user interface should be changed to that city (ex: Toronto, Canada)  _AND_  user should receive a list of upcoming events in that city.
+> -   **Given**  user was typing a specific city (ex: Berlin) in the city search input field _AND_  the list of suggested cities is showing;
+> -   **When**  user selects a city (ex: Berlin, Germany) from the  suggestion list;
+> -   **Then**  user interface should be changed to that city (ex: Berlin, Germany)  _AND_  user should receive a list of upcoming events in that city.
 
 ### User story 2 - Show/hide event details
 
