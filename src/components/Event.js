@@ -12,7 +12,7 @@ const Event = ({ event }) => {
 
   //***Render the component's UI. All event.summary, event.created, etc. comes from the event object structure within mock-data.js.
   return (
-    <li>
+    <li className="event">
       {/* Display event summary */}
       <h4 id="event-summary">{event.summary}</h4>
       {/* Display event start time */}
