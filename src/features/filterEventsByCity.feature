@@ -1,6 +1,7 @@
 # In Cucumber scenarios need to be stored in .feature text files, referred to as “Gherkin files.”
 # Each Gherkin file should contain exactly one feature, which can then have one or multiple scenarios.
 
+# Feature 1
 Feature: Filter events by city
     Scenario: When user hasn’t searched for a specific city, show upcoming events from all cities.
         Given user hasn’t searched for any city

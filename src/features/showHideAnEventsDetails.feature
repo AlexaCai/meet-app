@@ -1,6 +1,7 @@
 # In Cucumber scenarios need to be stored in .feature text files, referred to as “Gherkin files.”
 # Each Gherkin file should contain exactly one feature, which can then have one or multiple scenarios.
 
+# Feature 2
 Feature: Show/Hide Event Details
     Scenario: An event element is collapsed by default.
         Given user hasn’t clicked/expand an event element
