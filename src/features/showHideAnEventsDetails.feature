@@ -13,8 +13,7 @@ Feature: Show/Hide Event Details
         And user clicks on a show details button for a specific event
         Then user should see the event all details.
 
-    # Scenario: User can collapse an event to hide details.
-    #     Given user has clicked/expand an event element
-    #     When user is on a specific event details view 
-    #     And user clicks on the hide details button
-    #     Then user event view should collapse.
+    Scenario: User can collapse an event to hide details.
+        Given user has clicked/expand an event element
+        When user clicks on the hide details button
+        Then user event view should collapse.
