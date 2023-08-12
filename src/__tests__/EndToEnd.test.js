@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-//***Feature 2 of the app.
+//***End-to-end test for Feature 2.
 describe('show/hide an event details', () => {
 
     //***Since both of tests require the browser to be opened and closed, we can separate these actions by way of a set of beforeAll() and afterAll() functions (we can code this here before instead of coding these patterns inside each test individually - both methods work, but using beforeAll and afterAll save you time and makes code cleaner, as each test will only include code relevant to that test rather than containing redundant code that applies to every test).
@@ -8,14 +8,16 @@ describe('show/hide an event details', () => {
     let page;
     beforeAll(async () => {
         //***The test starts by launching the browser using Puppeteer (this require the Puppeteer API, so a line of code at the top of the file is needed to import Puppeteer).
-        browser = await puppeteer.launch({
-            //***headless: false make the test turn off headless mode to actually watch the tests being conducted within the browser.
-            headless: false,
-            //***Slow down the test in browser by 250ms.
-            slowMo: 250, 
-            //***Removes any puppeteer/browser timeout limitations.
-            timeout: 0 
-          });
+        browser = await puppeteer.launch(
+        //     {
+        //     //***headless: false make the test turn off headless mode to actually watch the tests being conducted within the browser.
+        //     headless: false,
+        //     //***Slow down the test in browser by 250ms.
+        //     slowMo: 250, 
+        //     //***Removes any puppeteer/browser timeout limitations.
+        //     timeout: 0 
+        //   }
+          );
         //***Puppeteer API is then used to create a new page and navigate to your locally hosted app.
         page = await browser.newPage();
         await page.goto('http://localhost:3000/');
