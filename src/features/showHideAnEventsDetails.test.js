@@ -26,12 +26,11 @@ defineFeature(feature, test => {
             AppComponent = render(<App />);
         });
 
-        //***let CitySearchDOM is necessary as in this 'when' step, we are simulating a city search by user.
-        let CitySearchDOM;
         when('user is viewing upcoming events for all cities or upcoming events for a specific city', async () => {
             //***Logic to target the city search input field
             const AppDOM = AppComponent.container.firstChild;
-            CitySearchDOM = AppDOM.querySelector('#city-search');
+            //***const CitySearchDOM is necessary in this 'when' step, since we are simulating a city search possibility by user.
+            const CitySearchDOM = AppDOM.querySelector('#city-search');
             const citySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
             //***Logic to simulate user typing 'Berlin in city search input field.
@@ -54,7 +53,7 @@ defineFeature(feature, test => {
             const eventComponents = AppComponent.container.querySelectorAll('.event');
             //***Iterate through each event component.
             eventComponents.forEach(eventComponent => {
-                //***Check if the button 'Show details' is presented, meaning that the each event details arent shown (otherwise, its the 'Hide details' button that would appear).
+                //***Check if the button 'Show details' is presented, meaning that the each event details aren't shown (otherwise, its the 'Hide details' button that would appear instead).
                 const showDetailsButton = within(eventComponent).queryByText('Show details');
                 expect(showDetailsButton).toBeTruthy();
             });
@@ -72,12 +71,11 @@ defineFeature(feature, test => {
             AppComponent = render(<App />);
         });
 
-        //***let CitySearchDOM is necessary as in this 'when' step, we are simulating a city search by user.
-        let CitySearchDOM;
         when('user is viewing upcoming events for all cities or upcoming events for a specific city', async () => {
             //***Logic to target the city search input field
             const AppDOM = AppComponent.container.firstChild;
-            CitySearchDOM = AppDOM.querySelector('#city-search');
+            //***const CitySearchDOM is necessary in this 'when' step, since we are simulating a city search possibility by user.
+            const CitySearchDOM = AppDOM.querySelector('#city-search');
             const citySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
             //***Logic to simulate user typing 'Berlin in city search input field.
@@ -100,6 +98,7 @@ defineFeature(feature, test => {
             //***Simulate user clicking on 'Show details' button for the first event element rendered in the UI (eventComponents[0]...[0] being the index position).
             const user = userEvent.setup();
             eventComponents = AppComponent.container.querySelectorAll('.event');
+            //***Simulate user clicking on the first event of the list eventComponents[0]...[0] being first index position.
             const showDetailsButton = within(eventComponents[0]).queryByText('Show details');
             await user.click(showDetailsButton);
         });
@@ -111,23 +110,39 @@ defineFeature(feature, test => {
         });
     });
 
-    // //***Scenario 3.
-    // test('User can collapse an event to hide details.', ({ given, when, and, then }) => {
-    //     given('user has clicked/expand an event element', () => {
+    //***Scenario 3.
+    test('User can collapse an event to hide details.', ({ given, when, then }) => {
+        let eventComponents;
+        let AppComponent;
+        let showDetailsButton;
 
-    //     });
+        given('user has clicked/expand an event element', async () => {
+            //***First render the main view so following steps (clicking on buttons) can happen.
+            AppComponent = render(<App />);
+            //***waitFor function is used to make sure that the AppComponent (main view) is properly rendered and available before proceeding to interact with it. This ensure that the tests are executed in the correct order and that the necessary components are properly initialized.
+            await waitFor(() => {
+                eventComponents = AppComponent.container.querySelectorAll('.event');
+                showDetailsButton = within(eventComponents[0]).queryByText('Show details');
+            });
+            const user = userEvent.setup();
+            //***Simulate user clicking on 'Show details' button on the first event of the list (because of showDetailsButton = within(eventComponents[0]).queryByText('Show details');...[0] being first index position).
+            await user.click(showDetailsButton);
+            //***Since user has clicked on 'Show details' button, 'Hide details' button should appear, meaning the user has open the details view of an event (clicked/expand an event element).
+            const hideDetailsButton = within(eventComponents[0]).queryByText('Hide details');
+            expect(hideDetailsButton).toBeTruthy();
+        });
 
-    //     when('user is on a specific event details view', () => {
+        when('user clicks on the hide details button', async () => {
+            const user = userEvent.setup();
+            const hideDetailsButton = within(eventComponents[0]).queryByText('Hide details');
+            //***Simulate user clicking on 'Hide details' button on the first event of the list (because of const hideDetailsButton = within(eventComponents[0]).queryByText('Hide details');...[0] being first index position).
+            await user.click(hideDetailsButton);
+        });
 
-    //     });
-
-    //     and('user clicks on the hide details button', () => {
-
-    //     });
-
-    //     then('user event view should collapse.', () => {
-
-    //     });
-    // });
-
+        then('user event view should collapse.', async () => {
+            //***Since user has clicked on 'Hide details' button on the first event of the list, 'Show details' button should appear, meaning the user has closed the detail view of an event (returned to collapsed view of events).
+            showDetailsButton = within(eventComponents[0]).queryByText('Show details');
+            expect(showDetailsButton).toBeTruthy();
+        });
+    });
 });
