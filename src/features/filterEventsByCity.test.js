@@ -11,9 +11,11 @@ import userEvent from '@testing-library/user-event';
 //***loadFeature() function is used to load filterEventsByCity.feature Gherkin file (loadFeature() expects the file path to start from the root of the project).
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
+//***Acceptance tests for Feature 1.
 //***defineFeature() function defines the feature that’s been loaded. 
 defineFeature(feature, test => {
 
+    //***Scenario 1.
     test('When user hasn’t searched for a specific city, show upcoming events from all cities.', ({ given, when, then }) => {
         //***In the 'given' step, the precondition is 'user hasn’t searched for any city.' This doesn't require any code as nothing has happened yet (the user hasn’t searched for anything).
         given('user hasn’t searched for any city', () => {
@@ -39,6 +41,7 @@ defineFeature(feature, test => {
         });
     });
 
+    //***Scenario 2.
     test('User should see a list of suggestions when they search for a city.', ({ given, when, then }) => {
 
         //***Simulate the app being opened.
@@ -67,6 +70,7 @@ defineFeature(feature, test => {
         });
     });
 
+    //***Scenario 3.
     test('User can select a city from the suggested list.', ({ given, and, when, then }) => {
 
         //***All four variables are declared/defined outside of the given() function, because we'll need to use them in later steps in this test, and therefore by being declared outside, we won't have to keep redeclaring them when we want to use them.
