@@ -2,7 +2,7 @@
 # Each Gherkin file should contain exactly one feature, which can then have one or multiple scenarios.
 
 # Feature 3
-Feature:  Specify Number of Events
+Feature:  Specify number of events
     Scenario: When user hasn’t specified a number, 32 events are shown by default
         Given user hasn’t specified a specific number of events to be shown
         When  user is on initial default view (upcoming events for all cities) or has searched for a specific city

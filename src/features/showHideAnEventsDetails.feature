@@ -2,7 +2,7 @@
 # Each Gherkin file should contain exactly one feature, which can then have one or multiple scenarios.
 
 # Feature 2
-Feature: Show/Hide Event Details
+Feature: Show/hide event details
     Scenario: An event element is collapsed by default
         Given user hasn’t clicked/expand an event element
         When user is viewing upcoming events for all cities or upcoming events for a specific city
