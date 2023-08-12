@@ -12,7 +12,7 @@ const Event = ({ event }) => {
 
   //***Render the component's UI. All event.summary, event.created, etc. comes from the event object structure within mock-data.js.
   return (
-    <li>
+    <li className="event">
       {/* Display event summary */}
       <h4 id="event-summary">{event.summary}</h4>
       {/* Display event start time */}
@@ -33,7 +33,7 @@ const Event = ({ event }) => {
         </div>
       )}
       {/* Button that toggles the 'showDetails' state when clicked. The onClick={() => setShowDetails(!showDetails)} is an event handler that is triggered when the button is clicked. It uses an arrow function to call the setShowDetails function, which updates the showDetails state. The !showDetails expression toggles the current value of showDetails, switching it from false to true or vice versa. */}
-      <button id="button-details" onClick={() => setShowDetails(!showDetails)}>
+      <button className="button-details" onClick={() => setShowDetails(!showDetails)}>
         {/* showDetails ? 'Hide details' : 'Show details' dynamically changes the text displayed on the event button based on the value of the showDetails state. If showDetails is true, the text will be 'Hide details' (allowing user to go back to collapsed event view). If showDetails is false (so currently in a collapsed event view), the text will be 'Show details' (allowing the user to open more details on an event). */}
         {showDetails ? 'Hide details' : 'Show details'}
       </button>

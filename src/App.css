@@ -19,9 +19,13 @@ li {
   margin-bottom: 10px;
 }
 
-#button-details {
+.button-details {
   margin-bottom: 15px;
   margin-top: 10px;
+  cursor: pointer;
+  border-radius: 1px;
+  padding: 5px 8px;
+  border-radius: 4px;
 }
 
 p {
@@ -102,25 +106,6 @@ input[type="number"] {
 
 .suggestions > li:hover {
   background-color: #bcdcdb;
-}
-
-.event {
-  padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  position: relative;
-}
-
-.details-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
 }
 
 #event-description {

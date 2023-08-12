@@ -56,9 +56,11 @@ To help the development of the app, the following user stories, along with their
 
 **Scenario 1.3** - User can select a city from the suggested list.
 
-> -   **Given**  user was typing a specific city (ex: Toronto) in the city search input field _AND_  the list of suggested cities is showing;
-> -   **When**  user selects a city (ex: Toronto, Canada) from the  suggestion list;
-> -   **Then**  user interface should be changed to that city (ex: Toronto, Canada)  _AND_  user should receive a list of upcoming events in that city.
+> -   **Given**  user was typing a specific city (ex: Berlin) in the city search input field 
+> -   **And**  the list of suggested cities is showing 
+> -   **When**  user selects a city (ex: Berlin, Germany) from the  suggestion list;
+> -   **Then**  user interface should be changed to that city (ex: Berlin, Germany) 
+> -   **And**  user should receive a list of upcoming events in that city.
 
 ### User story 2 - Show/hide event details
 
@@ -75,14 +77,15 @@ To help the development of the app, the following user stories, along with their
 **Scenario 2.2** - User can expand an event to see details.
 
 >  - **Given** user hasn’t clicked/expand an event element;
->  - **When** user is viewing upcoming events for all cities or upcoming events for a specific city and click on a specific event;
+>  - **When** user is viewing upcoming events for all cities or upcoming events for a specific city
+>  - **And** user clicks on a show details button for a specific event
 >  - **Then** user should see the event all details.
 
 **Scenario 2.3** - User can collapse an event to hide details.
 
 >  -   **Given** user has clicked/expand an event element;
->  -   **When** the user is on a specific event details view and click on the hide details button;
->  - **Then** user view should collapse and go back to previous general list of collapsed events, whether it is in initial default view (if user did not search for a specific city) or in a specific searched city view (if user did search for a specific city).
+>  -   **When** When user clicks on the hide details button;
+>  - **Then** user event view should collapse.
 
 ### User story 3 - Specify number of events
 
@@ -98,9 +101,9 @@ To help the development of the app, the following user stories, along with their
 
 **Scenario 3.2**- User can change the number of events displayed.
 
->  -   **Given** user specified a specific number of events to be shown (ex: 16);
+>  -   **Given** user specified a specific number of events to be shown (ex: 3);
 >  -   **When** user is on initial default view (upcoming events for all cities) or has searched for a specific city;
->  - **Then** user should be able to see the specified number of events on screen (ex: 16), whether it is in initial default view (if user did not search for a specific city) or in a specific searched city view (if user did search for a specific city).
+>  - **Then** user should be able to see the specified number of events on screen (ex: 3).
 
 ### User story 4 - Use the app when offline
 
