@@ -36,8 +36,7 @@ describe('Filter Events By City', () => {
 
     //***Test for scenario 1 of feature 1.
     test('When user hasn’t searched for a city, show upcoming events from all cities', async () => {
-        //***Puppeteer checks if 'event details' (const eventDetails = await page.$('.event .details);) is not shown to the user, which is done when the code line 'expect(eventDetails).toBeNull();' is executed.
-        //***Using page.$() for selecting an element on the page. In this case, we select the .event .details element, as this is what contains the detailed information of an event.
+        //***Using page.$() for selecting an element on the page. In this case, we select the input[placeholder="Search for a city"].
         const placeholderElement = await page.$('input[placeholder="Search for a city"]');
         //***expect() function used to verify whether this extra element (event details) exists or not.
         expect(placeholderElement).toBeTruthy();
@@ -46,13 +45,19 @@ describe('Filter Events By City', () => {
     //***Test for scenario 2 of feature 1.
     test('User should see a list of suggestions when they search for a city', async () => {
         await page.click('.city')
-        //***Puppeteer checks if 'event details' (const eventDetails = await page.$('.event .details);) is not shown to the user, which is done when the code line 'expect(eventDetails).toBeNull();' is executed.
-        //***Using page.$() for selecting an element on the page. In this case, we select the .event .details element, as this is what contains the detailed information of an event.
+        //***Using page.$() for selecting an element on the page. In this case, we select the .suggestions element.
         const showSuggestions = await page.$('.suggestions');
         //***expect() function used to verify whether this extra element (event details) exists or not.
         expect(showSuggestions).toBeTruthy();
     });
 
+    //***Test for scenario 3 of feature 1.
+    test('User can select a city from the suggested list', async () => {
+        await page.click('.city')
+        //***Using page.$() for selecting an element on the page. In this case, we select the .suggestions element.
+        await page.$('.suggestions');
+        await page.click('li')
+    });
 });
 
 
@@ -114,6 +119,8 @@ describe('show/hide an event details', () => {
     //***Test for scenario 3 of feature 2.
     test('User can collapse an event to hide details', async () => {
         await page.click('.event .button-details');
+        //***Puppeteer checks if 'event details' (const eventDetails = await page.$('.event .details);) is shown to the user, which is done when the code line 'expect(eventDetails).toBeDefined();' is executed (because user would have click on the 'Show details' button).
+        //***Using page.$() for selecting an element on the page. In this case, we select the .event .details element, as this is what contains the detailed information of an event.
         const eventDetails = await page.$('.event .details');
         //***toBeNull() matcher is used to ensure the extra details element no longer exists when user click on 'Hide details' button.
         expect(eventDetails).toBeNull();
