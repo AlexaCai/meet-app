@@ -1,5 +1,61 @@
 import puppeteer from 'puppeteer';
 
+//***End-to-end test for Feature 1.
+describe('Filter Events By City', () => {
+
+    //***Since both of tests require the browser to be opened and closed, we can separate these actions by way of a set of beforeAll() and afterAll() functions (we can code this here before instead of coding these patterns inside each test individually - both methods work, but using beforeAll and afterAll save you time and makes code cleaner, as each test will only include code relevant to that test rather than containing redundant code that applies to every test).
+    let browser;
+    let page;
+    beforeAll(async () => {
+        //***The test starts by launching the browser using Puppeteer (this require the Puppeteer API, so a line of code at the top of the file is needed to import Puppeteer).
+        browser = await puppeteer.launch(
+            //     {
+            //     //***headless: false make the test turn off headless mode to actually watch the tests being conducted within the browser.
+            //     headless: false,
+            //     //***Slow down the test in browser by 250ms.
+            //     slowMo: 250, 
+            //     //***Removes any puppeteer/browser timeout limitations.
+            //     timeout: 0 
+            //   }
+        );
+        //***Puppeteer API is then used to create a new page and navigate to your locally hosted app.
+        page = await browser.newPage();
+        await page.goto('http://localhost:3000/');
+        //***localhost:3000 page need some time to load the event list, so to ensure this list is loaded before moving on, we use the API method waitForSelector() to wait until a desired element appears (await page.waitForSelector('.event');). In this case, we want to wait for the 'Event' component to be loaded.
+        //***This test’s purpose is to test the show/hide functionality of the event details, so it’s imperative that the Event component be loaded before; otherwise, there would be nothing to test.
+        await page.waitForSelector('#number-events');
+    });
+
+    afterAll(() => {
+        //***Chromium window is closed, completing the test run.
+        browser.close();
+    });
+
+
+    //***Actual tests.
+
+    //***Test for scenario 1 of feature 1.
+    test('When user hasn’t searched for a city, show upcoming events from all cities', async () => {
+        //***Puppeteer checks if 'event details' (const eventDetails = await page.$('.event .details);) is not shown to the user, which is done when the code line 'expect(eventDetails).toBeNull();' is executed.
+        //***Using page.$() for selecting an element on the page. In this case, we select the .event .details element, as this is what contains the detailed information of an event.
+        const placeholderElement = await page.$('input[placeholder="Search for a city"]');
+        //***expect() function used to verify whether this extra element (event details) exists or not.
+        expect(placeholderElement).toBeTruthy();
+    });
+
+    //***Test for scenario 2 of feature 1.
+    test('User should see a list of suggestions when they search for a city', async () => {
+        await page.click('.city')
+        //***Puppeteer checks if 'event details' (const eventDetails = await page.$('.event .details);) is not shown to the user, which is done when the code line 'expect(eventDetails).toBeNull();' is executed.
+        //***Using page.$() for selecting an element on the page. In this case, we select the .event .details element, as this is what contains the detailed information of an event.
+        const showSuggestions = await page.$('.suggestions');
+        //***expect() function used to verify whether this extra element (event details) exists or not.
+        expect(showSuggestions).toBeTruthy();
+    });
+
+});
+
+
 //***End-to-end test for Feature 2.
 describe('show/hide an event details', () => {
 
@@ -9,15 +65,15 @@ describe('show/hide an event details', () => {
     beforeAll(async () => {
         //***The test starts by launching the browser using Puppeteer (this require the Puppeteer API, so a line of code at the top of the file is needed to import Puppeteer).
         browser = await puppeteer.launch(
-        //     {
-        //     //***headless: false make the test turn off headless mode to actually watch the tests being conducted within the browser.
-        //     headless: false,
-        //     //***Slow down the test in browser by 250ms.
-        //     slowMo: 250, 
-        //     //***Removes any puppeteer/browser timeout limitations.
-        //     timeout: 0 
-        //   }
-          );
+            //     {
+            //     //***headless: false make the test turn off headless mode to actually watch the tests being conducted within the browser.
+            //     headless: false,
+            //     //***Slow down the test in browser by 250ms.
+            //     slowMo: 250, 
+            //     //***Removes any puppeteer/browser timeout limitations.
+            //     timeout: 0 
+            //   }
+        );
         //***Puppeteer API is then used to create a new page and navigate to your locally hosted app.
         page = await browser.newPage();
         await page.goto('http://localhost:3000/');
@@ -61,6 +117,12 @@ describe('show/hide an event details', () => {
         const eventDetails = await page.$('.event .details');
         //***toBeNull() matcher is used to ensure the extra details element no longer exists when user click on 'Hide details' button.
         expect(eventDetails).toBeNull();
-      });
+    });
+
+
+    // //***End-to-end test for Feature 3.
+    // describe('Specify Number of Events', () => {
+
+    // });
 
 }); 
