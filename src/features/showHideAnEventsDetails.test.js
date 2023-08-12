@@ -4,30 +4,34 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { render, within, waitFor } from '@testing-library/react';
 import App from '../App';
-import { getEvents } from '../api';
 import userEvent from '@testing-library/user-event';
 
 
 //***loadFeature() function is used to load showHideAnEventsDetails.feature Gherkin file (loadFeature() expects the file path to start from the root of the project).
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
-//***Acceptance tests for Feature 2.
+
+//***Acceptance tests for Feature 2 of the app.
+
+
 //***defineFeature() function defines the feature that’s been loaded. 
 defineFeature(feature, test => {
 
-    //***Scenario 1.
-    test('An event element is collapsed by default.', ({ given, when, then }) => {
+
+
+    //***Scenario 1 of feature 2.
+    test('An event element is collapsed by default', ({ given, when, then }) => {
 
         //***User first open the app, but do nothing else.
         //***AppComponent has been defined outside of the 'given' step because AppComponent will be used more than just the 'given' step (and variables defined within functions aren’t available outside those functions).
-        //***Rendering the App component is equivalent to the app 'opening and being in initial default view of the app', as it’s the code that would be executed if the user were actually opening up the app.
+        //***Rendering the App component is equivalent to the app opening and being in initial default view.
         let AppComponent;
         given('user hasn’t clicked/expand an event element', () => {
             AppComponent = render(<App />);
         });
 
         when('user is viewing upcoming events for all cities or upcoming events for a specific city', async () => {
-            //***Logic to target the city search input field
+            //***Logic to target the city search input field.
             const AppDOM = AppComponent.container.firstChild;
             //***const CitySearchDOM is necessary in this 'when' step, since we are simulating a city search possibility by user.
             const CitySearchDOM = AppDOM.querySelector('#city-search');
@@ -60,19 +64,21 @@ defineFeature(feature, test => {
         });
     });
 
-    //***Scenario 2.
-    test('User can expand an event to see details.', ({ given, when, and, then }) => {
+
+
+    //***Scenario 2 of feature 2.
+    test('User can expand an event to see details', ({ given, when, and, then }) => {
 
         //***User first open the app, but do nothing else.
         //***AppComponent has been defined outside of the 'given' step because AppComponent will be used more than just the 'given' step (and variables defined within functions aren’t available outside those functions).
-        //***Rendering the App component is equivalent to the app 'opening and being in initial default view of the app', as it’s the code that would be executed if the user were actually opening up the app.
+        //***Rendering the App component is equivalent to the app opening and being in initial default view.
         let AppComponent;
         given('user hasn’t clicked/expand an event element', () => {
             AppComponent = render(<App />);
         });
 
         when('user is viewing upcoming events for all cities or upcoming events for a specific city', async () => {
-            //***Logic to target the city search input field
+            //***Logic to target the city search input field.
             const AppDOM = AppComponent.container.firstChild;
             //***const CitySearchDOM is necessary in this 'when' step, since we are simulating a city search possibility by user.
             const CitySearchDOM = AppDOM.querySelector('#city-search');
@@ -98,28 +104,30 @@ defineFeature(feature, test => {
             //***Simulate user clicking on 'Show details' button for the first event element rendered in the UI (eventComponents[0]...[0] being the index position).
             const user = userEvent.setup();
             eventComponents = AppComponent.container.querySelectorAll('.event');
-            //***Simulate user clicking on the first event of the list eventComponents[0]...[0] being first index position.
+            //***Simulate user clicking on 'Show details' button on the first event of the list eventComponents[0]...[0] being first index position.
             const showDetailsButton = within(eventComponents[0]).queryByText('Show details');
             await user.click(showDetailsButton);
         });
 
         then('user should see the event all details.', () => {
-            //***Check that the event on which the user has clicked on 'Show details' button now display/contains the 'Hide details' button (expect(hideDetailsButton).toBeTruthy();), meaning the event details are displayed (and ready to by hiden again thanks the 'Hide details' button).
+            //***Check that the event on which the user has clicked on 'Show details' button now display/contain the 'Hide details' button (expect(hideDetailsButton).toBeTruthy();), meaning the event details are displayed (and ready to by hiden again thanks the 'Hide details' button).
             const hideDetailsButton = within(eventComponents[0]).queryByText('Hide details');
             expect(hideDetailsButton).toBeTruthy();
         });
     });
 
-    //***Scenario 3.
-    test('User can collapse an event to hide details.', ({ given, when, then }) => {
+
+
+    //***Scenario 3 of feature 2.
+    test('User can collapse an event to hide details', ({ given, when, then }) => {
         let eventComponents;
         let AppComponent;
         let showDetailsButton;
 
         given('user has clicked/expand an event element', async () => {
-            //***First render the main view so following steps (clicking on buttons) can happen.
+            //***First render the main view so the following steps (clicking on buttons/user interactions) can happen.
             AppComponent = render(<App />);
-            //***waitFor function is used to make sure that the AppComponent (main view) is properly rendered and available before proceeding to interact with it. This ensure that the tests are executed in the correct order and that the necessary components are properly initialized.
+            //***waitFor function is used to make sure that the AppComponent (main view) is properly rendered and available before proceeding to interact with it. 
             await waitFor(() => {
                 eventComponents = AppComponent.container.querySelectorAll('.event');
                 showDetailsButton = within(eventComponents[0]).queryByText('Show details');
@@ -127,7 +135,7 @@ defineFeature(feature, test => {
             const user = userEvent.setup();
             //***Simulate user clicking on 'Show details' button on the first event of the list (because of showDetailsButton = within(eventComponents[0]).queryByText('Show details');...[0] being first index position).
             await user.click(showDetailsButton);
-            //***Since user has clicked on 'Show details' button, 'Hide details' button should appear, meaning the user has open the details view of an event (clicked/expand an event element).
+            //***Since user has clicked on 'Show details' button, 'Hide details' button should appear, meaning the user has opened the details view of an event (clicked/expand an event element).
             const hideDetailsButton = within(eventComponents[0]).queryByText('Hide details');
             expect(hideDetailsButton).toBeTruthy();
         });
@@ -140,7 +148,7 @@ defineFeature(feature, test => {
         });
 
         then('user event view should collapse.', async () => {
-            //***Since user has clicked on 'Hide details' button on the first event of the list, 'Show details' button should appear, meaning the user has closed the detail view of an event (returned to collapsed view of events).
+            //***Since user has clicked on 'Hide details' button on the first event of the list, 'Show details' button should appear back again, meaning the user has closed the details view of an event (returned to collapsed view of events).
             showDetailsButton = within(eventComponents[0]).queryByText('Show details');
             expect(showDetailsButton).toBeTruthy();
         });
