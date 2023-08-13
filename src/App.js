@@ -6,6 +6,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberofEvents';
 import { extractLocations, getEvents } from './api';
+import { InfoAlert } from './components/Alert';
 import './App.css';
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
   //***Creation new state 'allLocations' and passed it to the CitySearch component (see below in return section). 'allLocations' state is initialized in the fetchData() function below, with 'setAllLocations(extractLocations(allEvents));'.
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
+  //***State created to represent the text that’s displayed in the info alert.
+  const [infoAlert, setInfoAlert] = useState("");
 
 
   //***useEffect used for the list of events to be populated as soon as the App component is mounted. To make sure that fetchData() is called whenever there’s a change in the currentCity state, currentCity is used as a dependency in the useEffect() function. This way, the callback of useEffect will be called whenever it detects a change in currentCity. This callback calls fetchData() inside it and will keep the events list up to date.
@@ -35,7 +38,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
+      <div className="alerts-container">
+        {/* 'infoText' state is used to pass text to the InfoAlert component, as this is where the logic is. If the infoText state contains text (i.e., infoAlert's length isn’t zero), meaning that we want to show the alert, InfoAlert will render it - otherwise, it will render nothing. */}
+        {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+      </div>
+      <CitySearch
+        allLocations={allLocations}
+        setCurrentCity={setCurrentCity}
+        //***setInfoAlert used here to render the alert - for example, when a user searches for a city and no suggestions are found. The setInfoAlert setter function is passed here to CitySearch to populate the city search input field with a string value (the alert message to be displayed) in case the user searches for a city that doesn’t exist. 
+        setInfoAlert={setInfoAlert} />
       <NumberOfEvents setCurrentNOE={setCurrentNOE} />
       <EventList events={events} />
     </div>

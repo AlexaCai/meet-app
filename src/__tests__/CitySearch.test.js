@@ -17,7 +17,11 @@ describe('<CitySearch /> component', () => {
     //***Declares a variable ''CitySearchComponent'' and sets up a beforeEach code, which runs before each test in the suite. It renders the CitySearch component using the render function and stores the result in CitySearchComponent.
     let CitySearchComponent;
     beforeEach(() => {
-        CitySearchComponent = render(<CitySearch allLocations={[]} />);
+        CitySearchComponent = render(<CitySearch
+            allLocations={[]}
+            setCurrentCity={() => { }}
+            setInfoAlert={() => { }}
+        />);
     });
 
     //***First test case checks whether the rendered CitySearch component contains a text input element. It uses queryByRole to find an element with the role of 'textbox'. It then uses the toBeInTheDocument() matcher to check if the element is present in the DOM and the toHaveClass('city') matcher to check if the element has a class of 'city'.
@@ -52,7 +56,11 @@ describe('<CitySearch /> component', () => {
         //***allLocations contains the set of all possible distinct locations that will be extracted from allEvents. This extraction is done by using the function extractLocations.
         const allLocations = extractLocations(allEvents);
         //***CitySearch mock component is re-rendered as a way to overwrite the original CitySearchComponent (see beforeAll above), but this time it has a new prop (allLocations) passed to it.
-        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+        CitySearchComponent.rerender(<CitySearch
+            allLocations={allLocations}
+            setCurrentCity={() => { }}
+            setInfoAlert={() => { }}
+        />);
         //***The process of a user typing “Berlin” in the city input field is simulated.
         const cityTextBox = CitySearchComponent.queryByRole('textbox');
         await user.type(cityTextBox, "Berlin");
@@ -82,6 +90,7 @@ describe('<CitySearch /> component', () => {
         CitySearchComponent.rerender(<CitySearch
             allLocations={allLocations}
             setCurrentCity={() => { }}
+            setInfoAlert={() => { }}
         />);
         //***Querying for the city textbox element using its role attribute (input = textbox).
         const cityTextBox = CitySearchComponent.queryByRole('textbox');
