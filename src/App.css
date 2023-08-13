@@ -71,6 +71,15 @@ input[type="number"] {
   border-right: 2px solid #000000;
 }
 
+/* Stylings for the alert popping up when no suggested cities have been found after a user made search on the search city input field. */
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  left: 20px;
+  width: 250px;
+  z-index: 1000;
+}
+
 #number-events {
   background-color: rgb(177, 232, 248);
   border-bottom: 2px solid #000000;
