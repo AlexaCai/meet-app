@@ -26,7 +26,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         //***Once the list of filtered locations is returned after user searched for a city in search input field, it’s checked to see if the list contains no suggestions.
         if (filteredLocations.length === 0) {
             //***If no suggestions are found (length === 0), infoText is set as the message to display in the info alert.
-            infoText = "We can not find the city you are looking for. Please try another city"
+            infoText = "We can not find the city you are looking for. Please try another city."
         } else {
             //***If the list contains some suggestions, infoText is set to be empty, and the alert will stay hidden.
             infoText = ""
