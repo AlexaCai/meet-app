@@ -42,11 +42,22 @@ class InfoAlert extends Alert {
     constructor(props) {
       super(props);
       //***blue
-      this.color = 'rgb(0, 0, 255)'; 
+      this.color = 'rgb(0, 0, 0)'; 
       //***light blue
-      this.bgColor = 'rgb(220, 220, 255)';
+      this.bgColor = 'rgb(250, 127, 127)';
+    }
+  }
+
+  //***After the definition of the Alert component class, creation a subclass named InfoAlert.
+class ErrorAlert extends Alert {
+    constructor(props) {
+      super(props);
+      //***red
+      this.color = 'rgb(0, 0, 0)'; 
+      //***light red
+      this.bgColor = 'rgb(250, 127, 127)';
     }
   }
 
   //***Export InfoAlert (so it can used it in the CitySearch component).
-  export { InfoAlert };
+  export { InfoAlert, ErrorAlert };
