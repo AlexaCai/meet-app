@@ -177,6 +177,59 @@ input[type="number"] {
   }
 }
 
+/* Stylings for the alert popping up when no suggested cities have been found after a user made search on the search city input field. */
+.warning-alert {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1000;
+  width: 400px;
+}
+
+
+@media (max-width: 605.99px) {
+  .warning-alert {
+    width: 400px;
+  }
+}
+
+@media (max-width: 514.99px) {
+  .warning-alert {
+    width: 350px;
+  }
+}
+
+@media (max-width: 414.99px) {
+  .warning-alert {
+    width: 323px;
+  }
+}
+
+@media (max-width: 363.99px) {
+  .warning-alert {
+    width: 200px;
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 278.99px) {
+  .warning-alert {
+    width: 193px;
+    font-size: 20px;
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 262.99px) {
+  .warning-alert {
+      width: 140px;
+      font-size: 20px;
+      min-height: 100px;
+  }
+}
+
 #number-events {
   background-color: rgb(177, 232, 248);
   border-bottom: 2px solid #000000;
