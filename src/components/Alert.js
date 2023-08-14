@@ -48,7 +48,7 @@ class InfoAlert extends Alert {
     }
   }
 
-  //***After the definition of the Alert component class, creation a subclass named InfoAlert.
+  //***After the definition of the Alert component class, creation a subclass named ErrorAlert.
 class ErrorAlert extends Alert {
     constructor(props) {
       super(props);
@@ -59,5 +59,16 @@ class ErrorAlert extends Alert {
     }
   }
 
+    //***After the definition of the Alert component class, creation a subclass named WarningAlert.
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    //***red
+    this.color = 'rgb(0, 0, 0)'; 
+    //***light red
+    this.bgColor = 'rgb(250, 127, 127)';
+  }
+}
+
   //***Export InfoAlert (so it can used it in the CitySearch component).
-  export { InfoAlert, ErrorAlert };
+  export { InfoAlert, ErrorAlert, WarningAlert };
