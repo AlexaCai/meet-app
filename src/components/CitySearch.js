@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 
 //***''allLocations'' props extraction.
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     //***New state for the input field so that we can access its value (here being query).
     const [query, setQuery] = useState("");
@@ -18,8 +18,20 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
         const filteredLocations = allLocations ? allLocations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         }) : [];
+
         setQuery(value);
         setSuggestions(filteredLocations);
+
+        let infoText;
+        //***Once the list of filtered locations is returned after user searched for a city in search input field, it’s checked to see if the list contains no suggestions.
+        if (filteredLocations.length === 0) {
+            //***If no suggestions are found (length === 0), infoText is set as the message to display in the info alert.
+            infoText = "We can not find the city you are looking for. Please try another city."
+        } else {
+            //***If the list contains some suggestions, infoText is set to be empty, and the alert will stay hidden.
+            infoText = ""
+        }
+        setInfoAlert(infoText);
     };
 
     //***Function called when a suggestion item is clicked by a user in the city search suggestions list.
@@ -28,6 +40,8 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
         setQuery(value);
         setShowSuggestions(false);
         setCurrentCity(value);
+        //***'setInfoAlert("")' used here to make sure that if someone clicks the 'See all cities' option in the suggestion, alert won't show up. 
+        setInfoAlert("")
     };
 
     //***Initialize the local state suggestions to have the default value as the same array as its allLocations prop

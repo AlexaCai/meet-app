@@ -11,7 +11,7 @@ import App from '../App';
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} />);
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} setErrorAlert={() => { }} />);
     });
 
     //***This test checks whether the rendered NumberOfEventsComponent contains an element with a role of "textbox" (input field).

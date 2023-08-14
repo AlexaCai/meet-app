@@ -3,7 +3,7 @@
 //***Import necessary module.
 import { useState } from "react";
 
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
     const [inputValue, setInputValue] = useState("32");
     const [placeHolder, setPlaceholder] = useState("Enter number of events");
 
@@ -20,9 +20,28 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
 
     const handleInputChange = (e) => {
         const value = e.target.value;
+        //***Condition to make sure negative number arent allowed, return 0 events.
+        if (value.startsWith("-") || value.startsWith("+")) {
+            setCurrentNOE(0);
+            //***If positive number is typed in, set the value to this typed number.
+        } else {
+            setCurrentNOE(value);
+        }
         setPlaceholder("");
         setInputValue(e.target.value);
-        setCurrentNOE(value);
+
+
+        let alertErrorText;
+        //***Once the user write a number in the 'Number of events' input field, this code check if the value is indeed a simple number (doesnt allow any other symbols).
+        if (value !== "" && ((isNaN(value) || value.startsWith("+") || value <= 0))) {
+            //***If user enter a character other than a number, or a negative numebr, alertErrorText is set as the message to display in the error alert.
+            alertErrorText = "Please enter a valid number. Letters and special characters are not accepted.";
+        }
+        else {
+            //***If the value entered by the user is a number (not other type of characters), alertErrorText is set to be empty, and the alert will stay hidden.
+            alertErrorText = ""
+        }
+        setErrorAlert(alertErrorText);
     };
 
     const handleInputBlur = () => {
@@ -30,6 +49,7 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
             setPlaceholder("");
             setInputValue("32");
             setCurrentNOE("32");
+            setErrorAlert("");
         }
     };
 
