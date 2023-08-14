@@ -6,7 +6,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberofEvents';
 import { extractLocations, getEvents } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 import './App.css';
 
 const App = () => {
@@ -21,9 +21,16 @@ const App = () => {
   const [infoAlert, setInfoAlert] = useState("");
   //***State created to represent the text that’s displayed in the error alert.
   const [errorAlert, setErrorAlert] = useState("");
+    //***State created to represent the text that’s displayed in the warning alert.
+    const [warningAlert, setWarningAlert] = useState("");
 
   //***useEffect used for the list of events to be populated as soon as the App component is mounted. To make sure that fetchData() is called whenever there’s a change in the currentCity state, currentCity is used as a dependency in the useEffect() function. This way, the callback of useEffect will be called whenever it detects a change in currentCity. This callback calls fetchData() inside it and will keep the events list up to date.
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("")
+    } else {
+      setWarningAlert("You are offline. Events list displayed has been loaded from the cache.")
+    }
     fetchData();
   }, [currentCity, currentNOE]);
 
@@ -46,6 +53,9 @@ const App = () => {
         </div>
         <div className="error-alert">
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        </div>
+        <div className="warning-alert">
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
       </div>
       <CitySearch
