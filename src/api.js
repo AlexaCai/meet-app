@@ -64,10 +64,19 @@ const getToken = async (code) => {
 
 //***Fetch the list of all events (either from mock-data.js or Google Calendar API).
 export const getEvents = async () => {
+  
   //***If using localhost, return the mock data; otherwise, you use the real API.
   if (window.location.href.startsWith('http://localhost')) {
     return mockData;
   }
+
+  //***Code for loading that list when the user is offline. This API (!navigator.onLine) checks whether a user is online and returns a boolean.
+  //***If true (the user is online), the app will request data from the Google Calendar API. However, if false (the user is offline - ex: Wi-Fi has been turned off), the app will load the event list data stored in localStorage. The stored event list is parsed and returned as events.
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    return events ? JSON.parse(events) : [];
+  }
+
   const token = await getAccessToken();
   if (token) {
     //***removeQuery(); here removes the code from the URL once finished with it. As a result, the URL will look less complicated to the user (i.e., it will remove unnecessary query parameters). The function manually sets the browser's URL being more simple, removing any other text following the base URL.
@@ -76,10 +85,15 @@ export const getEvents = async () => {
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
+      //***JSON.stringify(result.events) function call is necessary because events is an array, but localStorage can only store strings. JSON.stringify() function is therefore necessary as it converts the list of events into a string, allowing it to be stored in localStorage.
+      //***The (stringified) list of events is stored under the key 'lastEvents'.
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
       return result.events;
     } else return null;
   }
 };
+
+
 
 //***Get the access token to access Google Calendar API data (Google Calendar API uses OAuth2 to protect its API, and in order to call its API methods, it is neccessary to provide a valid access token).
 export const getAccessToken = async () => {
