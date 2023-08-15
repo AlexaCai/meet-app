@@ -29,7 +29,8 @@ const CityEventsChart = ({ allLocations, events }) => {
             const count = events.filter((event) => event.location === location).length
             //***To get the city out of each location in allLocations, the location need to shorten and any unnecessary information need to be remove so we only have a city name. To do this, we use split().
             //***split() the location at the occurrence of a comma followed by a space (", "), which returns an array ("CITY", "COUNTRY"). Then, we refer to the first element in that array with [0], which is the name of the city. The data that’s returned is an array with an object of {city, count} (shorthand of {city: city, count: count}.
-            const city = location.split(', ')[0]
+            //***((/, | - /))  (meaning '','' OR ''-'' symbol) is present to make sure that cities named with an - (as ex: Dubai - UAE) are splited as well (along with those in the format Toronto, Canada with a separating comma).
+            const city = location.split((/, | - /))[0]
             return { city, count };
         })
         return data;
@@ -41,8 +42,9 @@ const CityEventsChart = ({ allLocations, events }) => {
                 margin={{
                     top: 20,
                     right: 20,
-                    bottom: 20,
-                    left: 20,
+                    bottom: 60,
+                    //***Left -30 to eliminate the default space on the chart’s left side (this space is saved for the y-axis labels, but since we haven’t applied labels to this axis, the empty space makes the chart look misaligned).
+                    left: -30,
                 }}
             >
                 <CartesianGrid />
