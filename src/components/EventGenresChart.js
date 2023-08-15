@@ -79,7 +79,7 @@ const EventsGenreChart = ({ events }) => {
           dataKey="value"
           fill="#8884d8"
           labelLine={false}
-          label={screenWidth > 910 ? renderCustomizedLabel : null}
+          label={screenWidth > 1050 ? renderCustomizedLabel : null}
           outerRadius={130}
           stroke="#000000"
           isAnimationActive={true}
@@ -91,7 +91,7 @@ const EventsGenreChart = ({ events }) => {
           }
 
         </Pie>
-        {screenWidth <= 910 && (
+        {screenWidth <= 1050 && (
           <Legend
             content={() => (
               <ul
