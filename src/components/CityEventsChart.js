@@ -53,7 +53,7 @@ const CityEventsChart = ({ allLocations, events }) => {
                 //***angle={60}: Tilts the label downwards by 60 degrees. 
                 //***interval={0}: Allows all labels to always be rendered no matter how narrow the screen. 
                 //***tick={{ dx: 20, dy: 40, fontSize: 14 }}: Property very customizable - can (almost) style the label text however needed.
-                angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }}/>
+                angle={60} interval={0} tick={{ dx: 20, dy: 5, fontSize: 14, textAnchor: 'start', transform: 'translate(0, 0)' }}/>
                 <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                 <Scatter name="A school" data={data} fill="#8884d8" />
