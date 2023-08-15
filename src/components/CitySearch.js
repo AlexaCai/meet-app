@@ -39,7 +39,11 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         const value = event.target.textContent;
         setQuery(value);
         setShowSuggestions(false);
-        setCurrentCity(value);
+        //***To ensure chart and pie visual are getting updated correcly, when user change the city, setCurrentCity is first cleard, then its getting updated with the value selected by the user. This is important because wihtout this process, visuals arent getting updated perfectly.
+        setCurrentCity("");
+        setTimeout(() => {
+            setCurrentCity(value);
+        }, 0);
         //***'setInfoAlert("")' used here to make sure that if someone clicks the 'See all cities' option in the suggestion, alert won't show up. 
         setInfoAlert("")
     };
