@@ -46,7 +46,12 @@ const CityEventsChart = ({ allLocations, events }) => {
                 }}
             >
                 <CartesianGrid />
-                <XAxis type="category" dataKey="city" name="City" />
+                <XAxis type="category" dataKey="city" name="City" 
+                //***Bottom line of code to adjust correctly the chart for smaller screen size.
+                //***angle={60}: Tilts the label downwards by 60 degrees. 
+                //***interval={0}: Allows all labels to always be rendered no matter how narrow the screen. 
+                //***tick={{ dx: 20, dy: 40, fontSize: 14 }}: Property very customizable - can (almost) style the label text however needed.
+                angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }}/>
                 <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                 <Scatter name="A school" data={data} fill="#8884d8" />
