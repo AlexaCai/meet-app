@@ -1,6 +1,6 @@
 //***src/__tests__/App.test.js
 
-import { render, within } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
@@ -59,14 +59,17 @@ describe('<App /> integration', () => {
     const allEvents = await getEvents();
     const berlinEvents = allEvents.filter(
       event => event.location === 'Berlin, Germany'
-    );
+    ); 
 
-    //***Comparing the number of events located in "Berlin, Germany" with the array of rendered Event list items, expecting them to have the same length.
-    expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+    await waitFor(() => {
+      const EventListDOM = AppDOM.querySelector('#event-list');
+      const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
 
-    //***Make sure that all of the items contain the text 'Berlin, Germany'.
-    allRenderedEventItems.forEach(event => {
-      expect(event.textContent).toContain("Berlin, Germany");
+      expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+
+      allRenderedEventItems.forEach(event => {
+        expect(event.textContent).toContain("Berlin, Germany");
+      });
     });
   });
 });

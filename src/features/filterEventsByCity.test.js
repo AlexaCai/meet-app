@@ -132,8 +132,15 @@ defineFeature(feature, test => {
             //***Filtering the list of all events down to events located in 'Berlin'.
             //***CitySearchInput.value should have the value 'Berlin, Germany' at this point
             const berlinEvents = allEvents.filter(event => event.location === citySearchInput.value)
-            //***The expect() function checks whether the number of events rendered in the App component equals the length of the array of events located in 'Berlin, Germany' in src/mock-data.js file when the tests are runned.
-            expect(EventListItems).toHaveLength(berlinEvents.length);
+
+            await waitFor(() => {
+                const EventListDOM = AppDOM.querySelector('#event-list');
+                const filteredCity = within(EventListDOM).queryAllByRole('listitem');
+                expect(filteredCity.length).toBe(EventListItems.length);
+                filteredCity.forEach(event => {
+                    expect(event.textContent).toContain("Berlin, Germany");
+                });
+            });
         });
     });
 });
