@@ -1,15 +1,15 @@
-# Meet app documentation
+# *Meet* app documentation
 
 **Content**
 
-- Projet description
+- Project description
 - User interface
 -  User stories and scenarios
  - Technical aspects 
  - App dependencies
 
  
-## Projet description
+## Project description
 
 *Meet* app was created to serve as a resource for users to find different events. Users can search for different types of coding events based on targeted cities. They can also specify how many events they want to display on their screen. All event information is presented visually with a dynamic scatter plot and pie chart, and in a list below the visuals.
 
@@ -17,8 +17,8 @@
 
  - **Who** — For any users who would like to know about coding events happening in different cities.
  - **What** — A progressive web app (PWA) with the ability to work offline and a serverless backend, developed using TDD and BDD techniques. 
- - **When** — Users are able to use Meet app whenever they want to view upcoming coding events for a specific city. 
- - **Where** — Meet app is hosted online and is shareable and installable. Users can access the app on their browser, or install it as a desktop app or mobile app. As it’s responsive, it displays well on any device sizes. The app can also be used even when users are offline.
+ - **When** — Users are able to use *Meet* app whenever they want to view upcoming coding events for a specific city. 
+ - **Where** — *Meet* app is hosted online and is shareable and installable. Users can access the app on their browser, or install it as a desktop app or mobile app. As it’s responsive, it displays well on any device sizes. The app can also be used even when users are offline.
  - **Why** — Serverless is the next generation of cloud infrastructure, PWA provides great user experience and performance and the TDD / BDD techniques ensure to have quality code and adequate test coverage.
 
 ## User interface
@@ -27,7 +27,7 @@ When users land on *Meet* app, the initial page with an input bar to look for a 
 
 The events for the searched city are then displayed (through a graph and chart and through a list). In the list, general information for each event are shown by default (event's title, date / time and location). If users want more details on a specific event, they can click on it to expand the event's window and reveal more details, and then close the expanded event window to go back to the previous full list of events when done. 
 
-All views are responsive so that Meet app can be used on any devices.
+All views are responsive so that *Meet* app can be used on any devices.
 
 ## User stories and scenarios
 
