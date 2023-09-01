@@ -7,7 +7,6 @@
 -  User stories and scenarios
  - Technical aspects 
  - App dependencies
-  - Github repositorie and Github Pages
 
  
 ## Projet description
@@ -150,7 +149,7 @@ For the app's development phase, the following user stories, along with their re
 
 *Meet* app is a serverless, progressive web application (PWA) built using React (with Create-React-App) and the test-driven development (TDD) and behavior-driven development (BDD) techniques. The application uses the Google Calendar API to fetch upcoming events in different cities.
 
-Serverless functions in *Meet* app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. To access the events from the Google Calendar API, users need to have an access token delivered from an authorization server (in case of *Meet* app, the authorization server is Google OAuth). For the users / *Meet* app to get this access token from the authorization server, serverless functions are used, using the cloud-service provider AWS Lambda. 
+Serverless functions in *Meet* app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. To access the events from the Google Calendar API, users need to have an access token delivered from an authorization server (in case of *Meet* app, the authorization server is Google OAuth). For users / *Meet* app to get this access token from the authorization server, serverless functions are used, using the cloud-service provider AWS Lambda. 
 
 Two things are first required to launch the authorization process and make it possible for users / *Meet* app to eventually access the Google Calendar API data: 
 
@@ -159,11 +158,11 @@ Two things are first required to launch the authorization process and make it po
 
 The consumer key and consumer secret are used to identify the consumer that wants to use the Google OAuth authorization server (the consumer here being a serverless function hosted on AWS Lambda). When users go on *Meet* app for the first time, the consumer uses the key and secret to start the process of requesting access from the authorization server, which then lets users know about this request (a Google consent screen appears on their UI).
 
-When users provide their credentials to log in into their Google account and grants consent to *Meet* app through this consent screen, the authorization server authenticates the user/the app and generate/send back an authorization code the user/the app, which is later exhange for an access token. The app can then use this token (on behalf of the user) to request and access the protected resources (events data) from the Google Calendar API and display them on the app UI. This is possible since at this point, the Google Calendar API will recognize the user’s token in requests sent to it and subsequently provide the requested list of events.
+When users provide their credentials to log in into their Google account and grants consent to *Meet* app through this consent screen, the authorization server authenticates the user/the app and generate/send back an authorization code the user/the app, which is later exchanged for an access token. The app can then use this token (on behalf of the user) to request and access the protected resources (event data) from the Google Calendar API and display them in the app UI. This is possible since at this point, the Google Calendar API will recognize the user’s token in requests sent to it and subsequently provide the requested list of events.
 
 The access token is required for the *Meet* app to work because the Google Calendar API is a protected API. Protected APIs can only be called by authenticated apps, so by apps that have a valid token issued by the API provider. Users / app sending a request to access the Google Calendar API events without a valid token would get an error message.
 
-Serveless functions for the authorization process with *Meet* app are particularly useful as they allow to avoid the need of building and maintaining an entire server. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developpers only pay for the resources used).
+Serveless functions for the authorization process with *Meet* app are particularly useful as they allow to avoid the need of building and maintaining an entire server. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developers only pay for the resources used).
 
 The specific technologies and tools used in this project are the following: 
 
