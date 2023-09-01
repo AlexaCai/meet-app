@@ -168,6 +168,7 @@ The specific technologies and tools used in this project are the following:
 
  - React
  - JavaScript
+  - HTML
  - CSS
  - AWS Lambda
  - Jest
@@ -191,6 +192,7 @@ The following dependencies are required for the *Meet* app to work:
   - react-dom: ^18.2.0
  -  react-scripts: 5.0.1
  -  recharts: ^2.7.3
+    - googleapis: ^110.0.0
  - web-vitals: ^2.1.4
  - workbox-background-sync: ^6.6.0
   - workbox-broadcast-update: ^6.6.0
