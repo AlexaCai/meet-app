@@ -12,29 +12,27 @@
  
 ## Projet description
 
-*Meet* app was created to serve as a reference in the domain of event searching and entertainment. Users can go on*Meet* app to have access to different information on upcoming events in a specific searched city (or by default, on all cities when a user hasn't searched for a specific city). Once users see all events from all cities or from a specific searched city on their UI, they can click on an event to have access to more details. 
+*Meet* app was created to serve as a resource for users to find different events. Users can search for different types of coding events based on targeted cities. They can also specify how many events they want to display on their screen. All event information is presented visually with a dynamic scatter plot and pie chart, and in a list below the visuals.
 
 *Meet* app can be broken down in the five following points:
 
- - **Who** — For users who could be anyone.
- - **What** — A progressive web app with the ability to work offline and a serverless backend developed using a TDD technique. 
- - **When** — Users of this app will be able to use it whenever they want to view upcoming events for a specific city. 
- - **Where** — The server is a serverless function hosted by a cloud provider (AWS). The application itself is also hosted online to make it shareable and installable. It can be used even when the user is offline. As it’s responsive, it displays well on any device. 
- - **Why** — Serverless is the next generation of cloud infrastructure, PWA provides great user experience and performance, and the TDD technique ensures to have quality code and adequate test coverage.
+ - **Who** — For any users who would like to know about coding events happening in different cities.
+ - **What** — A progressive web app (PWA) with the ability to work offline and a serverless backend, developed using TDD and BDD techniques. 
+ - **When** — Users are able to use Meet app whenever they want to view upcoming coding events for a specific city. 
+ - **Where** — Meet app is hosted online and is shareable and installable. Users can access the app on their browser, or install it as a desktop app or mobile app. As it’s responsive, it displays well on any device sizes. The app can also be used even when users are offline.
+ - **Why** — Serverless is the next generation of cloud infrastructure, PWA provides great user experience and performance and the TDD / BDD techniques ensure to have quality code and adequate test coverage.
 
 ## User interface
 
-More concretely, when users land on *Meet* app, the initial default page with a search input field to look for a city is displayed. Once users start typing in the search field, a list of the corresponding cities matching with the entry pops up, making the search easier and faster.
+When users land on *Meet* app, the initial page with an input bar to look for a city and an input bar to specify the number of events to show is displayed. Once users start typing in the city input bar, a list of the corresponding cities matching the text entry appears, making the search easier and faster. Once users have selected a city, they can indicate, in the number of events input bar, how many events they want to see for that city (by default, 32 events are displayed). 
 
-Once users have entered and selected for a city, he is invited to precise how many events he wants to see display for that city (by default, 32 events are displayed). A list of events for the searched city is then displayed. General information for each event are accessible up to this point, and if users want more details on a specific event, he can click on it to access more information, and then close the detailed view to go back full list of events. 
+The events for the searched city are then displayed (through a graph and chart and through a list). In the list, general information for each event are shown by default (event's title, date / time and location). If users want more details on a specific event, they can click on it to expand the event's window and reveal more details, and then close the expanded event window to go back to the previous full list of events when done. 
 
-User can also display a chart showing the number of upcoming events in each city.
-
-All views are responsive, using a combination of **(to fill in)**.
+All views are responsive so that Meet app can be used on any devices.
 
 ## User stories and scenarios
 
-To help the development of the app, the following user stories, along with their respective scenarios written with the Gherkin syntax have been created (the scenarios here being part of a larger user story describing interactions between a user and the application) .
+For the app's development phase, the following user stories, along with their respective scenarios written with the Gherkin syntax, have been created (the scenarios here being part of their related and respective larger user story and aiming at describing more precisely interactions between users and the app).
 
 ### User story 1 - Filter events by city
 
@@ -150,51 +148,67 @@ To help the development of the app, the following user stories, along with their
 
 ## Technical aspects
 
-*Meet* app is a serverless, progressive web application (PWA) built using React (Create-React-App / CRA) and the test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events in different cities.
+*Meet* app is a serverless, progressive web application (PWA) built using React (with Create-React-App) and the test-driven development (TDD) and behavior-driven development (BDD) techniques. The application uses the Google Calendar API to fetch upcoming events in different cities.
 
-Serverless functions in *Meet* app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. 
+Serverless functions in *Meet* app are used for the authorization process. More precisely, they are used to authorize the app to retrieve Google Calendar API event data. To access the events from the Google Calendar API, users need to have an access token delivered from an authorization server (in case of *Meet* app, the authorization server is Google OAuth). For the users / *Meet* app to get this access token from the authorization server, serverless functions are used, using the cloud-service provider AWS Lambda. 
 
-To access the events from Google Calendar API on *Meet* app, users first have to request an access token on an authorization server (in case of *Meet* app, the authorization server is Google OAuth). 
-
-For the users / *Meet* app to get a token from the authorization server, a serverless function is used, using the cloud-service provider AWS Lambda. Two things are then required to launch the process of obtaining a token: 
+Two things are first required to launch the authorization process and make it possible for users / *Meet* app to eventually access the Google Calendar API data: 
 
 - A consumer key (client_id)
 - A consumer secret (client_secret)
 
-The consumer key and consumer secret are used to identify the consumer that wants to use the Google OAuth authorization server (the consumer here being the serverless function hosted on AWS Lambda). The consumer uses the key and secret to start the process of requesting the access token from the authorization server, which then lets the user know about this request (a consent screen appears).
+The consumer key and consumer secret are used to identify the consumer that wants to use the Google OAuth authorization server (the consumer here being a serverless function hosted on AWS Lambda). When users go on *Meet* app for the first time, the consumer uses the key and secret to start the process of requesting access from the authorization server, which then lets users know about this request (a Google consent screen appears on their UI).
 
-When a user provides their credentials to log in to their Google account and grants consent to *Meet* app, the authorization server authenticates the user and generate / send back an access token to the app. The app can then use this token (on behalf of the user) to access protected resources (Google Calendar events). This allows users, up to this point, to send requests to Google Calendar API along with the received token and get back events via the React app (since the Google API will recognize the user’s token and subsequently provide the requested list of events).
+When users provide their credentials to log in into their Google account and grants consent to *Meet* app through this consent screen, the authorization server authenticates the user/the app and generate/send back an authorization code the user/the app, which is later exhange for an access token. The app can then use this token (on behalf of the user) to request and access the protected resources (events data) from the Google Calendar API and display them on the app UI. This is possible since at this point, the Google Calendar API will recognize the user’s token in requests sent to it and subsequently provide the requested list of events.
 
-The access token is required for the *Meet* app to work because the Google Calendar API is a protected API. Protected APIs can only be called by authenticated apps, so by apps that have a valid token issued by the API provider. Users / app sending a request to access the Google Calendar API events without a valid token would simply get an error message.
+The access token is required for the *Meet* app to work because the Google Calendar API is a protected API. Protected APIs can only be called by authenticated apps, so by apps that have a valid token issued by the API provider. Users / app sending a request to access the Google Calendar API events without a valid token would get an error message.
 
-Serveless functions for the authorization process with *Meet* app are particularly useful as they allow to avoid the need of building and maintaining an entire server just to provide access tokens. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developpers only pay for the resources used).
+Serveless functions for the authorization process with *Meet* app are particularly useful as they allow to avoid the need of building and maintaining an entire server. With AWS Lambda, the operational responsibilities for server management, scaling, and maintenance are shifted to the cloud provider, and the running costs are more effective (since developpers only pay for the resources used).
 
-Below is a list of all technical aspects of the project requierements, which all have me implemented and worked out:
+The specific technologies and tools used in this project are the following: 
 
- - (to fill in)
- - (to fill in)
- - (to fill in)
- - (to fill in)
- - (to fill in)
+ - React
+ - JavaScript
+ - CSS
+ - AWS Lambda
+ - Jest
+  - Cucumber
+ - Puppeteer
+ - Atatus
+ - Recharts
+ - Google Console API
+  - Lighthouse (from Google DevTools)
 
 
 ## App dependencies
 
 The following dependencies are required for the *Meet* app to work:
 
-For codes
- - All packages coming with Create-React-App
- 
- For styling
- 
- - (to fill in)
+  - testing-library/jest-dom: ^5.17.0
+ -  testing-library/react: ^13.4.0
+ -  testing-library/user-event: ^14.4.3
+ - atatus-spa: ^4.6.0
+ - react: ^18.2.0
+  - react-dom: ^18.2.0
+ -  react-scripts: 5.0.1
+ -  recharts: ^2.7.3
+ - web-vitals: ^2.1.4
+ - workbox-background-sync: ^6.6.0
+  - workbox-broadcast-update: ^6.6.0
+ - workbox-cacheable-response: ^6.6.0
+ - workbox-core: ^6.6.0
+ - workbox-expiration: ^6.6.0
+ - workbox-google-analytics: ^6.6.0
+  - workbox-navigation-preload: ^6.6.0
+ - workbox-precaching: ^6.6.0
+ - workbox-range-requests: ^6.6.0
+ - workbox-routing: ^6.6.0
+ - workbox-strategies: ^6.6.0
+  - workbox-streams: ^6.6.0
  
  For devDependencies
+
+  - gh-pages: ^5.0.0
+ - jest-cucumber: ^3.0.1
+  - puppeteer: ^18.1.0
  
- - Gh-Pages
-
-## Github repositorie and Github Pages
-
-Here's the link to my full [Github repositorie for my *Meet* app](https://github.com/AlexaCai/meet-app).
-
-Here's the link to my [*Meet* app hosted on Github Pages](https://alexacai.github.io/meet-app/).
