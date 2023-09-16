@@ -1,5 +1,3 @@
-// src/setupTests.js
-
 import '@testing-library/jest-dom';
 
 //***Add portions of the warning messages we want to intentionally prevent from appearing.
