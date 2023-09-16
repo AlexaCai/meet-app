@@ -1,4 +1,4 @@
-//***Added by default when you generate the serverless template code. It makes the code in the file more strict, reducing some of JavaScript’s sloppyness.
+//***Added by default when the serverless template code is generate. It makes the code in the file more strict, reducing some of JavaScript’s sloppyness.
 'use strict';
 
 //***The required Google package are imported (“googleapis”), along with the Google Calendar.
@@ -8,7 +8,7 @@ const calendar = google.calendar("v3");
 //***Scopes allows to set access levels for Google APIs, depending on the level of access needed. When setting up the required infrastructure in the Google console previously, “read-only access” was defined as the scope (OAuth 2.0 Scopes for Google APIs - /auth/calendar.events.public.readonly was choose for the project).
 const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 
-//***Process.env means the value being referred to is in the config.json file (environment : client_ID, secret_ID, calendar_ID). This is a best practice as it keeps the API secrets hidden (if also added in the .gitignore).
+//***Process.env means the value being referred to is in the config.json file (environment : client_ID, secret_ID, calendar_ID). This is a best practice as it keeps the API secrets hidden.
 const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
 
 //***The first step in the OAuth process is to generate a URL so users can log in with Google and be authorized to see the calendar events data. After logging in, users will receive a code as a URL parameter. 
@@ -64,7 +64,7 @@ module.exports.getAccessToken = async (event) => {
     });
   })
     .then((results) => {
-      //***Respond with OAuth token 
+      //***Respond with OAuth token.
       return {
         statusCode: 200,
         headers: {
@@ -75,7 +75,6 @@ module.exports.getAccessToken = async (event) => {
       };
     })
     .catch((error) => {
-      //***Handle error
       return {
         statusCode: 500,
         body: JSON.stringify(error),
@@ -84,7 +83,7 @@ module.exports.getAccessToken = async (event) => {
 };
 
 
-//***Named exactly the same as the function you defined in serverless.yml (getCalendarEvents).
+//***Named exactly the same as the function defined in serverless.yml (getCalendarEvents).
 module.exports.getCalendarEvents = async (event) => {
 
   //***Declared an access_token variable and get the token.
@@ -122,7 +121,6 @@ module.exports.getCalendarEvents = async (event) => {
       };
     })
     .catch((error) => {
-      //***Handle error.
       return {
         statusCode: 500,
         body: JSON.stringify(error),

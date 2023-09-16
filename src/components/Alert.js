@@ -1,8 +1,9 @@
-//***src/components/Alert.js
-
 import { Component } from 'react';
 
-//***Simple class component that attempts to render text it receives from its props, using the style from its getStyle function. 
+
+//***Main class.
+
+
 class Alert extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class Alert extends Component {
     this.bgColor = null;
   }
 
-  //***getStyle function defines a basic style for the color, background color, borders, and some spacing.
+
   getStyle = () => {
     return {
       color: this.color,
@@ -28,6 +29,7 @@ class Alert extends Component {
     };
   }
 
+
   render() {
     return (
       <div className="Alert">
@@ -37,19 +39,20 @@ class Alert extends Component {
   }
 }
 
-//***After the definition of the Alert component class, creation a subclass named InfoAlert.
+
+//***Subclasses from main Class (Alert).
+
+
 class InfoAlert extends Alert {
     constructor(props) {
       super(props);
-      //***blue
       this.color = 'rgb(0, 0, 0)'; 
-      //***light blue
       this.bgColor = 'rgb(250, 127, 127)';
     }
   }
 
-  //***After the definition of the Alert component class, creation a subclass named ErrorAlert.
-class ErrorAlert extends Alert {
+
+  class ErrorAlert extends Alert {
     constructor(props) {
       super(props);
       //***red
@@ -59,8 +62,8 @@ class ErrorAlert extends Alert {
     }
   }
 
-    //***After the definition of the Alert component class, creation a subclass named WarningAlert.
-class WarningAlert extends Alert {
+
+  class WarningAlert extends Alert {
   constructor(props) {
     super(props);
     //***red
@@ -70,5 +73,5 @@ class WarningAlert extends Alert {
   }
 }
 
-  //***Export InfoAlert (so it can used it in the CitySearch component).
-  export { InfoAlert, ErrorAlert, WarningAlert };
+
+export { InfoAlert, ErrorAlert, WarningAlert };
